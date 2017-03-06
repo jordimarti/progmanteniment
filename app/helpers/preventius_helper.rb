@@ -1,0 +1,2 @@
+module PreventiusHelper
+end

@@ -1,0 +1,65 @@
+es:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password_confirmation:
+              confirmation: "No coincide con la confirmación"
+            current_password:
+              blank: "No puede estar en blanco"
+              invalid: "La contraseña no es válida"
+            password:
+              too_short: "La contraseña debe tener como mínimo 8 carácteres"
+              blank: "No puede estar en blanco"
+            email:
+              taken: "Este correo electrónico ya está registrado"
+              invalid: "Esta dirección de correo electrónico no es válida"
+              blank: "Es necesario escribir el correo electrónico"
+            first_name:
+              blank: "Es necesario escribir el nombre"
+            last_name:
+              blank: "Es necesario escribir los apellidos"
+            reset_password_token:
+              invalid: "No coincide con la confirmación"
+  layouts:
+    application:
+      titol_pagina: "Programa de mantenimiento"
+    navigation:
+      titol: "Programa de mantenimiento"
+      register: "Registrarse"
+      sign_in: "Iniciar sesión"
+      account_configuration: "Configuración de la cuenta"
+      sign_out: "Cerrar sesión"
+      tutorials: "Tutoriales"
+      projectes: "Proyectos"
+    subnavigation:
+      identificacio: "Identificación"
+      deficiencies: "Deficiencias"
+      intervencions: "Intervenciones"
+      fases: "Fases"
+      planificacio: "Planificación financiera"
+  home:
+    permisos:
+      titol: "Acceso denegado"
+      text_permisos: "No tenéis los permisos necesarios para acceder a esta página."
+  edificis:
+    index:
+      titol: "Proyectos"
+      nou_edifici: "Crear un nuevo edificio"
+      no_projectes: "Aún no has creado ningún proyecto."
+    new:
+      titol: "Crear un nuevo proyecto"
+      tornar_projectes: "Volver al listado de proyectos"
+    form:
+      guardar: "Guardar"
+  identificacions:
+    edit:
+      titol_identificacio: "Identificación"
+    form:
+      guardar: "Guardar"
+    update:
+      guardat_ok: "Les dades s'han guardat correctament"
+  operacions:
+    index:
+      guardar: "Guardar"

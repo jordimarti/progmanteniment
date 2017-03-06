@@ -1,0 +1,89 @@
+<div class="light-background-container">
+  
+  <div class="row">
+    <div class="medium-12 columns">
+      <div class="titol-seccio">
+        <%= t('.titol_qualificacio') %>
+      </div>
+    </div>
+  </div>
+
+  <% flash.each do |key, value| %>
+    <div class="row">
+      <div class="medium-6 columns end">
+        <div data-alert class="alert-box success radius">
+          <%= value %>
+          <a href="#" class="close">&times;</a>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="medium-12 columns">
+      <div class="light-container">
+      <%= simple_form_for(@arxiu, :html => { :multipart => true }) do |f| %>
+        <%= f.error_notification %>
+        <div class="form-inputs">
+          <%= f.input :edifici_id, :as => :hidden %>
+          <div class="row">
+            <div class="medium-4 columns">
+              <%= t('.llibre_edifici') %>
+              <%= f.input :xml_preventiu, as: :file %>
+            </div>
+            <div class="medium-4 columns">
+              <%= t('.programa_rehabilitacio') %>
+              <%= f.input :xml_correctiu, as: :file %>
+            </div>
+            <div class="medium-4 columns">
+              <%= t('.test_energetic') %>
+              <%= f.input :xml_millora, as: :file %>
+            </div>
+          </div>
+        </div>
+        <div class="form-actions">
+          <div class="row">
+            <div class="medium-12 columns">
+              <%= f.button :submit, t('.guardar'), :class => 'button button-right' %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="spacer"></div>
+
+  <div class="reveal" id="modal-preventiu" data-reveal>
+    <h3 id="modalTitle"><%= t('.preventiu') %></h3>
+    <div id="formulari-preventiu" class="formulari-preventiu">
+    </div>
+    <button class="close-button" data-close aria-label="Close modal" type="button">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+
+  <div class="row">
+    <div class="medium-12 columns">
+      <div class="light-container operacions-container">
+        <div class="operacions-title">
+          <h3 class="titol-operacions"><%= t('.titol_llistat_operacions') %></h3>
+        </div>
+        <div id="operacions">
+          <%= render  :partial => '/operacions/llistat_operacions' %>
+        </div>
+        <div class="spacer"></div>
+        <%= link_to (new_operacio_path), remote: true do %>
+          <span class="suma">+</span> <%= t('.afegir_operacio') %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+

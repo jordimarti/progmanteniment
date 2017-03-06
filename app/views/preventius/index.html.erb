@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Preventius</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Edifici</th>
+      <th>Descripcio ca</th>
+      <th>Descripcio es</th>
+      <th>Periodicitat</th>
+      <th>Periodicitat text ca</th>
+      <th>Periodicitat text es</th>
+      <th>Document referencia</th>
+      <th>Responsable ca</th>
+      <th>Responsable es</th>
+      <th>Obligatorietat</th>
+      <th>Manual habitatge</th>
+      <th>Creat usuari</th>
+      <th>Sistema</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @preventius.each do |preventiu| %>
+      <tr>
+        <td><%= preventiu.edifici_id %></td>
+        <td><%= preventiu.descripcio_ca %></td>
+        <td><%= preventiu.descripcio_es %></td>
+        <td><%= preventiu.periodicitat %></td>
+        <td><%= preventiu.periodicitat_text_ca %></td>
+        <td><%= preventiu.periodicitat_text_es %></td>
+        <td><%= preventiu.document_referencia %></td>
+        <td><%= preventiu.responsable_ca %></td>
+        <td><%= preventiu.responsable_es %></td>
+        <td><%= preventiu.obligatorietat %></td>
+        <td><%= preventiu.manual_habitatge %></td>
+        <td><%= preventiu.creat_usuari %></td>
+        <td><%= preventiu.sistema %></td>
+        <td><%= link_to 'Show', preventiu %></td>
+        <td><%= link_to 'Edit', edit_preventiu_path(preventiu) %></td>
+        <td><%= link_to 'Destroy', preventiu, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Preventiu', new_preventiu_path %>

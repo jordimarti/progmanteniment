@@ -1,0 +1,23 @@
+<%= simple_form_for(@preventiu) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :edifici_id %>
+    <%= f.input :descripcio_ca %>
+    <%= f.input :descripcio_es %>
+    <%= f.input :periodicitat %>
+    <%= f.input :periodicitat_text_ca %>
+    <%= f.input :periodicitat_text_es %>
+    <%= f.input :document_referencia %>
+    <%= f.input :responsable_ca %>
+    <%= f.input :responsable_es %>
+    <%= f.input :obligatorietat %>
+    <%= f.input :manual_habitatge %>
+    <%= f.input :creat_usuari %>
+    <%= f.input :sistema %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

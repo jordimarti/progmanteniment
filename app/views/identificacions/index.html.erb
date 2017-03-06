@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Identificacions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Edifici</th>
+      <th>Tipus via</th>
+      <th>Nom via</th>
+      <th>Numero via</th>
+      <th>Bloc</th>
+      <th>Codi postal</th>
+      <th>Poblacio</th>
+      <th>Provincia</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @identificacions.each do |identificacio| %>
+      <tr>
+        <td><%= identificacio.edifici_id %></td>
+        <td><%= identificacio.tipus_via %></td>
+        <td><%= identificacio.nom_via %></td>
+        <td><%= identificacio.numero_via %></td>
+        <td><%= identificacio.bloc %></td>
+        <td><%= identificacio.codi_postal %></td>
+        <td><%= identificacio.poblacio %></td>
+        <td><%= identificacio.provincia %></td>
+        <td><%= link_to 'Show', identificacio %></td>
+        <td><%= link_to 'Edit', edit_identificacio_path(identificacio) %></td>
+        <td><%= link_to 'Destroy', identificacio, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Identificacio', new_identificacio_path %>

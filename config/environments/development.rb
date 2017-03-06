@@ -51,4 +51,29 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # Configuració de Mailer
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  
+  config.action_mailer.smtp_settings = {
+   :address              => "smtp.sendgrid.net",
+   :port                 => 587,
+   :user_name            => ENV['sendgrid_username'],
+   :password             => ENV['sendgrid_password'],
+   :authentication       => "plain",
+   :enable_starttls_auto => true
+  }
+
+  # Configuració Paperclip
+  config.paperclip_defaults = {
+    storage: :s3,
+    s3_credentials: {
+      s3_host_name: ENV["aws_host_name"],
+      bucket: ENV["aws_bucket"],
+      access_key_id: ENV["aws_access_key_id"],
+      secret_access_key: ENV["aws_secret_access_key"],
+      s3_region: ENV["aws_region"]
+    }
+  } 
 end

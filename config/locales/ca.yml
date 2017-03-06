@@ -1,0 +1,65 @@
+ca:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password_confirmation:
+              confirmation: "No coincideix amb la confirmació"
+            current_password:
+              blank: "No pot estar en blanc"
+              invalid: "La contrasenya no és vàlida"
+            password:
+              too_short: "La contrasenya ha de tenir com a mínim 8 caràcters"
+              blank: "No pot estar en blanc"
+            email:
+              taken: "Aquest correu electrònic ja està registrat"
+              invalid: "Aquesta adreça de correu electrònic no és vàlida"
+              blank: "Cal escriure el correu electrònic"
+            first_name:
+              blank: "Cal escriure el nom"
+            last_name:
+              blank: "Cal escriure els cognoms"
+            reset_password_token:
+              invalid: "No coincideix amb la confirmació"
+  layouts:
+    application:
+      titol_pagina: "Programa de manteniment"
+    navigation:
+      titol: "Programa de manteniment"
+      register: "Registrar-se"
+      sign_in: "Iniciar sessió"
+      account_configuration: "Configuració del compte"
+      sign_out: "Tancar sessió"
+      tutorials: "Tutorials"
+      projectes: "Projectes"
+    subnavigation:
+      identificacio: "Identificació"
+      deficiencies: "Deficiències"
+      intervencions: "Intervencions"
+      fases: "Fases"
+      planificacio: "Planificació financera"
+  home:
+    permisos:
+      titol: "Accés denegat"
+      text_permisos: "No teniu els permisos necessaris per accedir a aquesta pàgina."
+  edificis:
+    index:
+      titol: "Projectes"
+      nou_edifici: "Crear un nou edifici"
+      no_projectes: "Encara no has creat cap projecte."
+    new:
+      titol: "Crear un nou projecte"
+      tornar_projectes: "Tornar al llistat de projectes"
+    form:
+      guardar: "Guardar"
+  identificacions:
+    edit:
+      titol_identificacio: "Identificació"
+    form:
+      guardar: "Guardar"
+    update:
+      guardat_ok: "Les dades s'han guardat correctament"
+  operacions:
+    index:
+      guardar: "Guardar"

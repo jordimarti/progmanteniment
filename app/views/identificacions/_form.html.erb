@@ -1,0 +1,39 @@
+<%= simple_form_for @identificacio do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <div class="identificacio-title">
+      <span class="title"><%= t('.dades_edifici') %></span>
+    </div>
+    <div class="row">
+      <div class="medium-2 columns">
+        <%= f.input :tipus_via, collection: ['Avinguda', 'Carrer', 'Carretera', 'Passeig', 'Passatge', 'Plaça', 'Rambla', 'Ronda'] %>
+      </div>
+      <div class="medium-6 columns">
+        <%= f.input :nom_via %>
+      </div>
+      <div class="medium-2 columns">
+        <%= f.input :numero_via %>
+      </div>
+      <div class="medium-2 columns">
+        <%= f.input :bloc %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="medium-2 columns">
+        <%= f.input :codi_postal %>
+      </div>
+      <div class="medium-6 columns">
+        <%= f.input :poblacio %>
+      </div>
+      <div class="medium-4 columns">
+        <%= f.input :provincia %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, t('.guardar'), :class => 'button button-right' %>
+  </div>
+<% end %>

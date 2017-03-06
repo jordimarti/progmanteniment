@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Edifici:</strong>
+  <%= @derrama.edifici_id %>
+</p>
+
+<p>
+  <strong>Fase:</strong>
+  <%= @derrama.fase_id %>
+</p>
+
+<p>
+  <strong>Concepte:</strong>
+  <%= @derrama.concepte %>
+</p>
+
+<p>
+  <strong>Import:</strong>
+  <%= @derrama.import %>
+</p>
+
+<p>
+  <strong>Data mes:</strong>
+  <%= @derrama.data_mes %>
+</p>
+
+<p>
+  <strong>Data any:</strong>
+  <%= @derrama.data_any %>
+</p>
+
+<%= link_to 'Edit', edit_derrama_path(@derrama) %> |
+<%= link_to 'Back', derrames_path %>

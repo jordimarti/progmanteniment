@@ -1,0 +1,16 @@
+<%= simple_form_for(@planificacio) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :edifici_id %>
+    <%= f.input :fons_propis %>
+    <%= f.input :subvencions_solicitades %>
+    <%= f.input :subvencions_atorgades %>
+    <%= f.input :import_financar %>
+    <%= f.input :forma_financar %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

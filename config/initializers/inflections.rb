@@ -14,3 +14,11 @@
 # ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.acronym 'RESTful'
 # end
+ActiveSupport::Inflector.inflections do |inflect|
+  inflect.irregular 'identificacio', 'identificacions'
+  inflect.irregular 'operacio', 'operacions'
+  inflect.irregular 'planificacio', 'planificacions'
+  inflect.irregular 'derrama', 'derrames'
+  inflect.irregular 'ingres', 'ingressos'
+  inflect.irregular 'tresoreria', 'tresoreries'
+end

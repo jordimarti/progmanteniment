@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Arxius</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Edifici</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @arxius.each do |arxiu| %>
+      <tr>
+        <td><%= arxiu.edifici_id %></td>
+        <td><%= link_to 'Show', arxiu %></td>
+        <td><%= link_to 'Edit', edit_arxiu_path(arxiu) %></td>
+        <td><%= link_to 'Destroy', arxiu, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Arxiu', new_arxiu_path %>

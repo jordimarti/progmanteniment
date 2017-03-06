@@ -1,0 +1,221 @@
+
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require foundation_and_overrides
+
+ */
+
+@import "font-awesome-sprockets";
+@import "font-awesome";
+/***** HEADER ******/
+
+.top-bar {
+	background-color: #000000;
+	padding: 0.2rem;
+}
+
+.top-bar ul {
+	background-color: #000000;
+	margin-top: 2px;
+}
+
+.top-bar li:hover {
+	background-color: #333333;
+}
+
+.top-bar-title-container {
+	color: #ffffff;
+	padding-left: 12px;
+}
+
+.top-bar-title {
+	color: #ffffff;
+}
+
+.top-bar-title:hover {
+	color: #ffffff;
+}
+
+.sessionbar-link {
+	color: #ffffff;
+	font-size: 0.9em;
+}
+
+.sessionbar-link:hover {
+	color: #ffffff;
+}
+
+.is-submenu-item {
+	background-color: #666666;
+}
+
+.sub-top-bar {
+	background-color: #3B8ABC;
+	height: 40px;
+}
+
+/***** SUBMENU *****/
+.header-submenu {
+	padding: 6px 14px;
+}
+
+ul.header-submenu-list {
+	list-style-type: none;
+	margin: 0px;
+}
+
+li.header-submenu-item {
+	display: inline;
+	padding: 5px 10px;
+	font-size: 0.8em;
+}
+
+li.header-submenu-item:first-child {
+	padding-left: 0px;
+	border-right: 1px solid #333333;
+	margin-right: 6px;
+}
+
+li.header-nom-edifici {
+	font-size: 0.9em;
+	font-weight: bold;
+	color: white;
+}
+
+.header-submenu-actiu {
+	background-color: #f6f6f6;
+	border-radius: 3px;
+}
+
+.header-submenu-actiu > .header-submenu-link {
+	color: #333333;
+}
+
+.header-submenu-link {
+	color: white;
+}
+
+.header-submenu-link:hover {
+	color: #999999;
+}
+
+
+/***** FOOTER ******/
+
+.footer-container {
+	padding: 30px;
+	border-top: 1px solid #ccc;
+}
+
+.footer-text-container {
+	text-align: center;
+	font-size: 0.8em;
+}
+
+.logo-caateeb {
+	max-width: 250px;
+	margin-bottom: 30px;
+}
+
+
+/***** CONTENT ******/
+
+.dark-background-container {
+	background-color: #CFE2EF;
+	padding-top: 40px;
+	padding-bottom: 80px;
+}
+
+.light-background-container {
+	background-color: #EAEAEA;
+	padding-top: 40px;
+	padding-bottom: 80px;
+	min-height: 700px;
+}
+
+.heavy-container {
+	border: 1px solid #cccccc;
+	background-color: #ffffff;
+}
+
+.light-container {
+	border: 1px solid #cccccc;
+	background-color: #ffffff;
+	padding: 20px;
+}
+
+.heavy-title-container {
+	background-color: #3B8ABC;
+	height: 50px;
+	padding: 12px 30px;
+}
+
+h2.heavy-title {
+	font-size: 1.2em;
+	font-weight: bold;
+	color: #ffffff;
+}
+
+.heavy-container-form {
+	padding: 30px;
+}
+
+.spacer {
+	margin-bottom: 40px;
+}
+
+.titol-seccio {
+	font-size: 1.2em;
+	font-weight: bold;
+	padding-bottom: 20px;
+}
+
+
+
+/***** FORMS ******/
+
+small.error {
+	color: red;
+}
+
+div.error > input {
+	margin: 0px;
+}
+
+.alert {
+	color: red;
+}
+
+.button-right {
+	float: right;
+}
+
+.button-right-container {
+	float: clear;
+	height: 60px;
+}
+
+.alternatives-container-under {
+	margin-top: 20px;
+}
+
+.spacer {
+	margin-bottom: 30px;
+}
+
+div.radio {
+	float: left;
+	margin-right: 40px;
+}

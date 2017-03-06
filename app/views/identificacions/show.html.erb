@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Edifici:</strong>
+  <%= @identificacio.edifici_id %>
+</p>
+
+<p>
+  <strong>Tipus via:</strong>
+  <%= @identificacio.tipus_via %>
+</p>
+
+<p>
+  <strong>Nom via:</strong>
+  <%= @identificacio.nom_via %>
+</p>
+
+<p>
+  <strong>Numero via:</strong>
+  <%= @identificacio.numero_via %>
+</p>
+
+<p>
+  <strong>Bloc:</strong>
+  <%= @identificacio.bloc %>
+</p>
+
+<p>
+  <strong>Codi postal:</strong>
+  <%= @identificacio.codi_postal %>
+</p>
+
+<p>
+  <strong>Poblacio:</strong>
+  <%= @identificacio.poblacio %>
+</p>
+
+<p>
+  <strong>Provincia:</strong>
+  <%= @identificacio.provincia %>
+</p>
+
+<%= link_to 'Edit', edit_identificacio_path(@identificacio) %> |
+<%= link_to 'Back', identificacions_path %>

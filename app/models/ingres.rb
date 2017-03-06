@@ -1,0 +1,2 @@
+class Ingres < ApplicationRecord
+end
