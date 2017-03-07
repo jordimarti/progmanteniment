@@ -1,12 +1,25 @@
 class OperacionsController < ApplicationController
   before_action :set_operacio, only: [:show, :edit, :update, :destroy]
 
-  # GET /operacions
-  # GET /operacions.json
   def index
+    @subnavigation = true
+    @submenu_actiu = 'operacions'
+    @operacions_menu_actiu = 'llistat'
     @operacions = Operacio.where(edifici_id: params[:edifici_id])
     @edifici = Edifici.find(params[:edifici_id])
-    @arxiu = Arxiu.find(@edifici.arxiu.id)
+    #@arxiu_preventiu = ArxiuPreventiu.find(@edifici.arxiu_preventiu.id)
+    #@arxiu_correctiu = ArxiuCorrectiu.find(@edifici.arxiu_correctiu.id)
+    #@arxiu_millora = ArxiuMillora.find(@edifici.arxiu_millora.id)
+  end
+
+  def import
+    @subnavigation = true
+    @submenu_actiu = 'operacions'
+    @operacions_menu_actiu = 'importacio'
+    @edifici = Edifici.find(params[:edifici_id])
+    @arxiu_preventiu = ArxiuPreventiu.find(@edifici.arxiu_preventiu.id)
+    @arxiu_correctiu = ArxiuCorrectiu.find(@edifici.arxiu_correctiu.id)
+    @arxiu_millora = ArxiuMillora.find(@edifici.arxiu_millora.id)
   end
 
   # GET /operacions/1
@@ -71,6 +84,6 @@ class OperacionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def operacio_params
-      params.require(:operacio).permit(:edifici_id, :fase_id, :descripcio_ca, :descripcio_es, :periodicitat, :periodicitat_text_ca, :periodicitat_text_es, :tipus, :import_obres, :import_honoraris, :import_taxes, :import_altres, :import_total)
+      params.require(:operacio).permit(:edifici_id, :fase_id, :descripcio_ca, :descripcio_es, :periodicitat, :periodicitat_text_ca, :periodicitat_text_es, :tipus, :sistema, :import_obres, :import_honoraris, :import_taxes, :import_altres, :import_total)
     end
 end

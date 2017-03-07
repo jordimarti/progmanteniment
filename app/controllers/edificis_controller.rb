@@ -42,10 +42,18 @@ class EdificisController < ApplicationController
     @planificacio = Planificacio.new
     @planificacio.edifici_id = edifici_id
     @planificacio.save
-    #Arxiu
-    @arxiu = Arxiu.new
-    @arxiu.edifici_id = edifici_id
-    @arxiu.save
+    #Arxiu preventiu
+    @arxiu_preventiu = ArxiuPreventiu.new
+    @arxiu_preventiu.edifici_id = edifici_id
+    @arxiu_preventiu.save
+    #Arxiu correctiu
+    @arxiu_correctiu = ArxiuCorrectiu.new
+    @arxiu_correctiu.edifici_id = edifici_id
+    @arxiu_correctiu.save
+    #Arxiu millora
+    @arxiu_millora = ArxiuMillora.new
+    @arxiu_millora.edifici_id = edifici_id
+    @arxiu_millora.save
   end
 
   private

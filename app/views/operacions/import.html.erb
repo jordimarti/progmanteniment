@@ -1,0 +1,102 @@
+<div class="light-background-container">
+
+  <%= render 'menu_operacions' %>
+
+  <% flash.each do |key, value| %>
+    <div class="row">
+      <div class="medium-6 columns end">
+        <div data-alert class="alert-box success radius">
+          <%= value %>
+          <a href="#" class="close">&times;</a>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="medium-4 columns">
+      <div class="light-container">
+      <%= simple_form_for(@arxiu_preventiu, :html => { :multipart => true }) do |f| %>
+        <%= f.error_notification %>
+        <div class="form-inputs">
+          <%= f.input :edifici_id, :as => :hidden %>
+          <div class="row">
+            <div class="medium-12 columns">
+              <h3 class="titol-importacio"><%= t('.llibre_edifici') %></h3>
+              <p><%= t('.importar_preventiu') %></p>
+              <div class="container-logo-import">
+                <%= image_tag('logo_llibre_edifici.png', :alt => t('.logo_llibre_edifici'), :class => 'logo-import') %>
+              </div>
+              <%= f.input :xml_preventiu, as: :file %>
+            </div>
+          </div>
+        </div>
+        <div class="form-actions">
+          <div class="row">
+            <div class="medium-12 columns">
+              <%= f.button :submit, t('.guardar'), :class => 'button button-right' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  
+    <div class="medium-4 columns">
+      <div class="light-container">
+      <%= simple_form_for(@arxiu_correctiu, :html => { :multipart => true }) do |f| %>
+        <%= f.error_notification %>
+        <div class="form-inputs">
+          <%= f.input :edifici_id, :as => :hidden %>
+          <div class="row">
+            <div class="medium-12 columns">
+              <h3 class="titol-importacio"><%= t('.programa_rehabilitacio') %></h3>
+              <p><%= t('.importar_correctiu') %></p>
+              <div class="container-logo-import">
+                <%= image_tag('logo_programa_rehabilitacio.png', :alt => t('.logo_programa_rehabilitacio'), :class => 'logo-import') %>
+              </div>
+              <%= f.input :xml_correctiu, as: :file %>
+            </div>
+          </div>
+        </div>
+        <div class="form-actions">
+          <div class="row">
+            <div class="medium-12 columns">
+              <%= f.button :submit, t('.guardar'), :class => 'button button-right' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  
+    <div class="medium-4 columns">
+      <div class="light-container">
+      <%= simple_form_for(@arxiu_millora, :html => { :multipart => true }) do |f| %>
+        <%= f.error_notification %>
+        <div class="form-inputs">
+          <%= f.input :edifici_id, :as => :hidden %>
+          <div class="row">
+            <div class="medium-12 columns">
+              <h3 class="titol-importacio"><%= t('.test_energetic') %></h3>
+              <p><%= t('.importar_millora') %></p>
+              <div class="container-logo-import">
+                <%= image_tag('logo_test_energetic.png', :alt => t('.logo_test_energetic'), :class => 'logo-import') %>
+              </div>
+              <%= f.input :xml_millora, as: :file %>
+            </div>
+          </div>
+        </div>
+        <div class="form-actions">
+          <div class="row">
+            <div class="medium-12 columns">
+              <%= f.button :submit, t('.guardar'), :class => 'button button-right' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>

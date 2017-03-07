@@ -1,12 +1,6 @@
 <div class="light-background-container">
-  
-  <div class="row">
-    <div class="medium-12 columns">
-      <div class="titol-seccio">
-        <%= t('.titol_qualificacio') %>
-      </div>
-    </div>
-  </div>
+
+  <%= render 'menu_operacions' %>
 
   <% flash.each do |key, value| %>
     <div class="row">
@@ -19,42 +13,7 @@
     </div>
   <% end %>
 
-  <div class="row">
-    <div class="medium-12 columns">
-      <div class="light-container">
-      <%= simple_form_for(@arxiu, :html => { :multipart => true }) do |f| %>
-        <%= f.error_notification %>
-        <div class="form-inputs">
-          <%= f.input :edifici_id, :as => :hidden %>
-          <div class="row">
-            <div class="medium-4 columns">
-              <%= t('.llibre_edifici') %>
-              <%= f.input :xml_preventiu, as: :file %>
-            </div>
-            <div class="medium-4 columns">
-              <%= t('.programa_rehabilitacio') %>
-              <%= f.input :xml_correctiu, as: :file %>
-            </div>
-            <div class="medium-4 columns">
-              <%= t('.test_energetic') %>
-              <%= f.input :xml_millora, as: :file %>
-            </div>
-          </div>
-        </div>
-        <div class="form-actions">
-          <div class="row">
-            <div class="medium-12 columns">
-              <%= f.button :submit, t('.guardar'), :class => 'button button-right' %>
-            </div>
-          </div>
-        </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
   
-  <div class="spacer"></div>
 
   <div class="reveal" id="modal-preventiu" data-reveal>
     <h3 id="modalTitle"><%= t('.preventiu') %></h3>

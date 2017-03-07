@@ -20,3 +20,9 @@ ca:
         password_confirmation: 'Confirmació de contrasenya'
         current_password: 'Contrasenya actual'
         remember_me: "Recorda'm"
+      arxiu_preventiu:
+        xml_preventiu: "XML del Llibre de l'edifici"
+      arxiu_correctiu:
+        xml_correctiu: "XML del Programa de Rehabilitació"
+      arxiu_millora:
+        xml_millora: "XML del Test Energètic"

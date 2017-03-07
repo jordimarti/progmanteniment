@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :arxius
+  get 'operacions/import'
+  resources :arxiu_millores
+  resources :arxiu_correctius
+  resources :arxiu_preventius
   resources :preventius
   resources :tresoreries
   resources :ingressos

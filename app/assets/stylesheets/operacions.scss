@@ -1,3 +1,38 @@
 // Place all the styles related to the Operacions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+ul.planificacions-menu-list {
+	list-style-type: none;
+	margin: 0px;
+	margin-bottom: 30px;
+}
+
+li.planificacions-menu-item {
+	display: inline;
+	margin-right: 20px;
+	font-size: 1em;
+	padding-bottom: 6px;
+}
+
+li.planificacions-menu-item > a {
+	color: #333333;
+}
+
+li.item-actiu {
+	border-bottom: 2px solid #333333;
+}
+
+h3.titol-importacio {
+	font-size: 1.3em;
+	font-weight: bold;
+}
+
+.container-logo-import {
+	text-align: center;
+	margin: 40px 0px;
+}
+
+.logo-import {
+	width: 200px;
+}

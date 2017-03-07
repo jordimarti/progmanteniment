@@ -9,6 +9,7 @@ class CreateOperacions < ActiveRecord::Migration[5.0]
       t.string :periodicitat_text_ca
       t.string :periodicitat_text_es
       t.string :tipus
+      t.string :sistema
       t.integer :import_obres
       t.integer :import_honoraris
       t.integer :import_taxes

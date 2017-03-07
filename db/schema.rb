@@ -10,12 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170304215150) do
+ActiveRecord::Schema.define(version: 20170306205350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "arxius", force: :cascade do |t|
+  create_table "arxiu_correctius", force: :cascade do |t|
+    t.integer  "edifici_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "xml_correctiu_file_name"
+    t.string   "xml_correctiu_content_type"
+    t.integer  "xml_correctiu_file_size"
+    t.datetime "xml_correctiu_updated_at"
+  end
+
+  create_table "arxiu_millores", force: :cascade do |t|
+    t.integer  "edifici_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "xml_millora_file_name"
+    t.string   "xml_millora_content_type"
+    t.integer  "xml_millora_file_size"
+    t.datetime "xml_millora_updated_at"
+  end
+
+  create_table "arxiu_preventius", force: :cascade do |t|
     t.integer  "edifici_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
@@ -23,14 +43,6 @@ ActiveRecord::Schema.define(version: 20170304215150) do
     t.string   "xml_preventiu_content_type"
     t.integer  "xml_preventiu_file_size"
     t.datetime "xml_preventiu_updated_at"
-    t.string   "xml_correctiu_file_name"
-    t.string   "xml_correctiu_content_type"
-    t.integer  "xml_correctiu_file_size"
-    t.datetime "xml_correctiu_updated_at"
-    t.string   "xml_millora_file_name"
-    t.string   "xml_millora_content_type"
-    t.integer  "xml_millora_file_size"
-    t.datetime "xml_millora_updated_at"
   end
 
   create_table "derrames", force: :cascade do |t|
@@ -91,6 +103,7 @@ ActiveRecord::Schema.define(version: 20170304215150) do
     t.string   "periodicitat_text_ca"
     t.string   "periodicitat_text_es"
     t.string   "tipus"
+    t.string   "sistema"
     t.integer  "import_obres"
     t.integer  "import_honoraris"
     t.integer  "import_taxes"

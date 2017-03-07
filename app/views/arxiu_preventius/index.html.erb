@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Arxiu Preventius</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Edifici</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @arxiu_preventius.each do |arxiu_preventiu| %>
+      <tr>
+        <td><%= arxiu_preventiu.edifici_id %></td>
+        <td><%= link_to 'Show', arxiu_preventiu %></td>
+        <td><%= link_to 'Edit', edit_arxiu_preventiu_path(arxiu_preventiu) %></td>
+        <td><%= link_to 'Destroy', arxiu_preventiu, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Arxiu Preventiu', new_arxiu_preventiu_path %>

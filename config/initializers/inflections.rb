@@ -21,4 +21,5 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'derrama', 'derrames'
   inflect.irregular 'ingres', 'ingressos'
   inflect.irregular 'tresoreria', 'tresoreries'
+  inflect.irregular 'millora', 'millores'
 end

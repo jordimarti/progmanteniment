@@ -63,3 +63,18 @@ es:
   operacions:
     index:
       guardar: "Guardar"
+      titol_llistat_operacions: "Listado de operaciones"
+    menu_operacions:
+      titol_operacions: "Operaciones"
+      llistat: "Listado de operaciones"
+      importacio: "Importación de archivos XML"
+    llistat_operacions:
+      descripcio: "Descripción"
+    import:
+      guardar: "Guardar"
+      llibre_edifici: "Llibre de l'edifici"
+      importar_preventiu: "Mantenimiento preventivo."
+      programa_rehabilitacio: "Programa de rehabilitación"
+      importar_correctiu: "Mantenimiento correctivo."
+      test_energetic: "Test energético"
+      importar_millora: "Operaciones de mejora."
