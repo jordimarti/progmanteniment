@@ -26,3 +26,7 @@ ca:
         xml_correctiu: "XML del Programa de Rehabilitació"
       arxiu_millora:
         xml_millora: "XML del Test Energètic"
+      fase:
+        nom: "Nom"
+        posicio: "Posició"
+        observacions: "Observacions"

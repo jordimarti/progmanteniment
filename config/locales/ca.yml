@@ -80,3 +80,42 @@ ca:
       importar_millora: "Operacions de millora."
     form:
       guardar: "Guardar"
+  fases:
+    index:
+      titol_fases: "Fases d'intervenció"
+      fase: "Fase"
+      crear_fases: "Has de crear com a mínim una fase en la qual assignar les intervencions a realitzar."
+    llistat_operacions:
+      descripcio: "Descripció"
+      import_total: "Import"
+    form:
+      guardar: "Guardar"
+  planificacions:  
+    menu_planificacio:
+      titol_planificacio: "Planificació financera"
+      info_previa: "Informació prèvia"
+      planificacio_fases: "Derrames"
+      calendari: "Calendari"
+    llistat_fases:
+      import: "Import total"
+      afegir_derrama: "Afegir derrama"
+    llistat_derrames:
+      concepte: "Concepte"
+      import: "Import"
+      data: "Data"
+    form:
+      guardar: "Guardar"
+  derrames:
+    form:
+      guardar: "Guardar"
+      gener: "Gener"
+      febrer: "Febrer"
+      marc: "Març"
+      abril: "Abril"
+      maig: "Maig"
+      juny: "Juny"
+      agost: "Agost"
+      setembre: "Setembre"
+      octubre: "Octubre"
+      novembre: "Novembre"
+      desembre: "Desembre"

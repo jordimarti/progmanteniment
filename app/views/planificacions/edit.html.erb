@@ -1,6 +1,30 @@
-<h1>Editing Planificacio</h1>
 
-<%= render 'form', planificacio: @planificacio %>
+<div class="light-background-container">
 
-<%= link_to 'Show', @planificacio %> |
-<%= link_to 'Back', planificacions_path %>
+	<%= render 'menu_planificacio' %>
+
+	<% flash.each do |key, value| %>
+    <div class="row">
+    	<div class="medium-6 columns end">
+		    <div data-alert class="alert-box success radius">
+				  <%= value %>
+				  <a href="#" class="close">&times;</a>
+				</div>
+			</div>
+		</div>
+  <% end %>
+
+	<div class="row">
+		<div class="medium-12 columns">
+			<div class="light-container">
+				<div class="row">
+					<div class="medium-12 columns">
+						<div class="planificacio-item">
+							<%= render 'form', planificacio: @planificacio %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,43 @@
+<div class="light-background-container">
+  
+  <div class="row">
+    <div class="medium-12 columns">
+      <div class="titol-seccio">
+        <%= t('.titol_fases') %> "<%= @nom_fase %>"
+      </div>
+    </div>
+  </div>
+
+  <%= form_tag assigna_operacions_path, method: :put do %>
+    <input id="edifici_id" name="edifici_id" type="hidden" value="<%= params[:edifici_id] %>" />
+    <input id="fase_id" name="fase_id" type="hidden" value="<%= params[:fase_id] %>" />
+    <div class="row">
+      <div class="medium-12 columns">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 30px"></th>
+              <th><%= t('.descripcio') %></th>
+              <th><%= t('.import_total') %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @operacions.each do |operacio| %>
+              <tr>
+                <td><%= check_box_tag "operacio_ids[]", operacio.id %></td>
+                <td><%= operacio.descripcio_ca %></td>
+                <% import_total = operacio.import_obres.to_i + operacio.import_honoraris.to_i + operacio.import_taxes.to_i + operacio.import_altres.to_i %> 
+                <td><%= import_total %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class="form-actions">
+          <%= submit_tag "Assigna", class: 'button' %>
+        </div>
+      </div>
+    </div>
+    
+  <% end %>
+
+</div>

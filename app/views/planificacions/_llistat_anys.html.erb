@@ -1,0 +1,63 @@
+<% mes_actual = Date.today.month %>
+<% tresoreria = @planificacio.fons_propis %>
+<% 
+	for i in @primer_any..@ultim_any %>
+	<table class="calendari">
+	  <thead>
+	    <tr>
+	      <th><%= i %></th>
+	      <th><%= t('.gener') %></th>
+	      <th><%= t('.febrer') %></th>
+	      <th><%= t('.març') %></th>
+	      <th><%= t('.abril') %></th>
+	      <th><%= t('.maig') %></th>
+	      <th><%= t('.juny') %></th>
+	      <th><%= t('.juliol') %></th>
+	      <th><%= t('.agost') %></th>
+	      <th><%= t('.setembre') %></th>
+	      <th><%= t('.octubre') %></th>
+	      <th><%= t('.novembre') %></th>
+	      <th><%= t('.desembre') %></th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr>
+	      <th><%= t('.ingressos') %></th>
+		    <% for j in 0..11 %>
+		    	<% ingres = @ingressos.where(data_mes: j+1, data_any: i) %>
+		    	<% if ingres.exists? %>
+		    		<td><%= ingres.last.import %></td>
+		    	<% else %>
+		    		<td></td>
+		    	<% end %>
+		    <% end %>
+    	</tr>
+    	<tr>
+    		<th><%= t('.despeses') %></th>
+    		<% for j in 0..11 %>
+		      <% if i == @primer_any && j < mes_actual - 1 %>
+		    		<td></td>
+		    	<% elsif 
+			      mes_derrama = @derrames.where(data_mes: j+1, data_any: i)
+			      if mes_derrama.exists? %>
+			        <td><%= mes_derrama.last.import %></td>
+			      <% else %>
+			        <td></td>
+			      <% end %>
+			    <% end %>
+		    <% end %>
+    	</tr>
+    	<tr>
+    		<th><%= t('.tresoreria') %></th>
+    		<% for j in 0..11 %>
+	    		<% tresoreria = @tresoreries.where(data_mes: j+1, data_any: i).last
+	    		if tresoreria != nil %>
+	    			<td><%= tresoreria.import %></td>
+	    		<% else %>
+	    			<td></td>
+	    		<% end %>
+		    <% end %>
+    	</tr>
+    </tbody>
+  </table>
+<% end %>
