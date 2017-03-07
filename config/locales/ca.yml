@@ -78,3 +78,5 @@ ca:
       importar_correctiu: "Manteniment correctiu."
       test_energetic: "Test energètic"
       importar_millora: "Operacions de millora."
+    form:
+      guardar: "Guardar"

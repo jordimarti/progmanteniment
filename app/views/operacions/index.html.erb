@@ -15,9 +15,9 @@
 
   
 
-  <div class="reveal" id="modal-preventiu" data-reveal>
-    <h3 id="modalTitle"><%= t('.preventiu') %></h3>
-    <div id="formulari-preventiu" class="formulari-preventiu">
+  <div class="reveal" id="modal-operacio" data-reveal>
+    <h3 id="modalTitle"><%= t('.operacio') %></h3>
+    <div id="formulari-operacio" class="formulari-operacio">
     </div>
     <button class="close-button" data-close aria-label="Close modal" type="button">
       <span aria-hidden="true">&times;</span>
@@ -30,12 +30,17 @@
       <div class="light-container operacions-container">
         <div class="operacions-title">
           <h3 class="titol-operacions"><%= t('.titol_llistat_operacions') %></h3>
+          <p>
+            <%= link_to (new_operacio_path(edifici_id: @edifici.id)), remote: true, class: 'button button-right' do %>
+              <span class="suma">+</span> <%= t('.afegir_operacio') %>
+            <% end %>
+          </p>
         </div>
         <div id="operacions">
           <%= render  :partial => '/operacions/llistat_operacions' %>
         </div>
         <div class="spacer"></div>
-        <%= link_to (new_operacio_path), remote: true do %>
+        <%= link_to (new_operacio_path(edifici_id: @edifici.id)), remote: true do %>
           <span class="suma">+</span> <%= t('.afegir_operacio') %>
         <% end %>
 

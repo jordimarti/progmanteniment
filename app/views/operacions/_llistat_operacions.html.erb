@@ -2,15 +2,19 @@
   <thead>
     <tr>
       <th><%= t('.descripcio') %></th>
-      <th><%= t('.periodicitat') %></th>
+      <th><%= t('.tipus') %></th>
       <th width="30"></th>
     </tr>
   </thead>
   <tbody>
     <% @operacions.each do |operacio| %>
     <tr>
-      <td><%= operacio.descripcio_ca %></td>
-      <td><%= operacio.periodicitat_text_ca %></td>
+      <td>
+        <%= link_to edit_operacio_path(operacio), remote: true do %>
+          <%= truncate(operacio.descripcio_ca, :length => 100) %>
+        <% end %>
+      </td>
+      <td><%= operacio.tipus %></td>
       <td>
       	<%= link_to operacio_path(operacio), remote: true, method: :delete,  data: { confirm: 'Segur que vols eliminar?' } do %>
 				  <div class="operacio-eliminar button-right">

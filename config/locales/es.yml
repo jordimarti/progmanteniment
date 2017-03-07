@@ -78,3 +78,5 @@ es:
       importar_correctiu: "Mantenimiento correctivo."
       test_energetic: "Test energético"
       importar_millora: "Operaciones de mejora."
+    form:
+      guardar: "Guardar"
