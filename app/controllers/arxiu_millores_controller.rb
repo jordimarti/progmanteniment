@@ -1,63 +1,36 @@
 class ArxiuMilloresController < ApplicationController
   before_action :set_arxiu_millora, only: [:show, :edit, :update, :destroy]
 
-  # GET /arxiu_millores
-  # GET /arxiu_millores.json
-  def index
-    @arxiu_millores = ArxiuMillora.all
-  end
-
-  # GET /arxiu_millores/1
-  # GET /arxiu_millores/1.json
-  def show
-  end
-
-  # GET /arxiu_millores/new
-  def new
-    @arxiu_millora = ArxiuMillora.new
-  end
-
-  # GET /arxiu_millores/1/edit
   def edit
   end
 
-  # POST /arxiu_millores
-  # POST /arxiu_millores.json
-  def create
-    @arxiu_millora = ArxiuMillora.new(arxiu_millora_params)
-
-    respond_to do |format|
-      if @arxiu_millora.save
-        format.html { redirect_to @arxiu_millora, notice: 'Arxiu millora was successfully created.' }
-        format.json { render :show, status: :created, location: @arxiu_millora }
-      else
-        format.html { render :new }
-        format.json { render json: @arxiu_millora.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /arxiu_millores/1
-  # PATCH/PUT /arxiu_millores/1.json
   def update
-    respond_to do |format|
-      if @arxiu_millora.update(arxiu_millora_params)
-        format.html { redirect_to @arxiu_millora, notice: 'Arxiu millora was successfully updated.' }
-        format.json { render :show, status: :ok, location: @arxiu_millora }
-      else
-        format.html { render :edit }
-        format.json { render json: @arxiu_millora.errors, status: :unprocessable_entity }
-      end
+    @arxiu_millora.update(arxiu_millora_params)
+    if @arxiu_millora.xml_millora.exists?
+      parse_file_millora
+    end
+    redirect_to operacions_path(edifici_id: @arxiu_millora.edifici_id), notice: 'Operacions de millora gravades'
+  end
+
+  def parse_file_millora
+    tempfile = Paperclip.io_adapters.for(@arxiu_millora.xml_millora)
+    doc = Nokogiri::XML(tempfile)
+    doc.root.elements.each do |node|
+      parse_xml_millora(node)
     end
   end
 
-  # DELETE /arxiu_millores/1
-  # DELETE /arxiu_millores/1.json
-  def destroy
-    @arxiu_millora.destroy
-    respond_to do |format|
-      format.html { redirect_to arxiu_millores_url, notice: 'Arxiu millora was successfully destroyed.' }
-      format.json { head :no_content }
+  def parse_xml_millora(node)
+    puts 'Ha arribat a parse xml'
+    if node.node_name.eql? 'proposta'
+      operacio = Operacio.new
+      operacio.edifici_id = @arxiu_millora.edifici_id
+      node.elements.each do |node|
+        operacio.descripcio_ca = node.text.to_s if node.name.eql? 'descripcio'
+        operacio.descripcio_es = node.text.to_s if node.name.eql? 'descripcio'
+        operacio.tipus = 'millora'
+      end
+      operacio.save
     end
   end
 
