@@ -41,6 +41,10 @@ class EdificisController < ApplicationController
     #Planificacio
     @planificacio = Planificacio.new
     @planificacio.edifici_id = edifici_id
+    @planificacio.fons_propis = 0
+    @planificacio.subvencions_solicitades = 0
+    @planificacio.subvencions_atorgades = 0
+    @planificacio.import_financar = 0
     @planificacio.save
     #Arxiu preventiu
     @arxiu_preventiu = ArxiuPreventiu.new
