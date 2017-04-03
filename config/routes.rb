@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'documents/index'
+
   get 'operacions/import'
   get 'planificacions/fases', to: 'planificacions#fases', :as => :fases_planificacio
   get 'planificacions/calendari', to: 'planificacions#calendari', :as => :calendari

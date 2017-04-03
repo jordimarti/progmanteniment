@@ -31,6 +31,6 @@ class IdentificacionsController < ApplicationController
     end
 
     def identificacio_params
-      params.require(:identificacio).permit(:edifici_id, :tipus_via, :nom_via, :numero_via, :bloc, :codi_postal, :poblacio, :provincia)
+      params.require(:identificacio).permit(:edifici_id, :tipus_via, :nom_via, :numero_via, :bloc, :codi_postal, :poblacio, :provincia, :foto_facana)
     end
 end
