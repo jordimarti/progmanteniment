@@ -1,0 +1,25 @@
+<div class="row">
+	<div class="medium-12 columns">
+		<h1 class="titol-document">PROGRAMA DE MANTENIMENT</h1>
+	</div>
+</div>
+
+<div class="row">
+	<div class="medium-12 columns">
+		<ul><li>EDIFICI</li></ul>
+	</div>
+</div>
+
+<div class="row">
+	<div class="medium-12 columns">
+		
+		<% if edifici.identificacio.bloc.blank?
+		    adreca = edifici.identificacio.tipus_via.to_s + ' ' + edifici.identificacio.nom_via.to_s + ' ' + edifici.identificacio.numero_via.to_s
+		  else
+		    adreca = edifici.identificacio.tipus_via.to_s + ' ' + edifici.identificacio.nom_via.to_s + ' ' + edifici.identificacio.numero_via.to_s + ', bloc ' + edifici.identificacio.bloc.to_s
+		  end
+		%>
+
+		Situació: <%= adreca %>	
+	</div>
+</div>

@@ -21,10 +21,11 @@ Rails.application.routes.draw do
   end
   resources :identificacions
   resources :fases
-  resources :edificis
+  resources :edificis do
+    resource :download, only: [:show]
+  end
   devise_for :users
   get 'home/index'
   get 'home/contacta'
-  get 'home/document', to: 'home#document', :as => :document
   root :to => "home#index"
 end

@@ -1,3 +1,74 @@
 // Place all the styles related to the documents controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.imatge-document {
+	max-width: 100px;
+	margin-bottom: 20px;
+}
+
+// Vista impressió PDF
+
+.pdf-container {
+	font-family: "Calibri", Helvetica, Roboto, Arial, sans-serif;
+	font-size: 11px;
+}
+
+.salt-pagina {
+	display: block;
+	clear: both; 
+	page-break-after: always;
+}
+
+.indivisible {
+	page-break-inside: avoid;
+}
+
+h1.titol-document {
+	font-family: "Calibri", Helvetica, Roboto, Arial, sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+h2.subtitol-document {
+	font-family: "Calibri", Helvetica, Roboto, Arial, sans-serif;
+	font-size: 19px;
+	font-weight: bold;
+	color: #760A09;
+}
+
+.separacio-gran {
+	height: 300px;
+}
+
+.dades-portada {
+	text-align: right;
+}
+
+.titol-seccio-document {
+	font-size: 2em;
+	font-weight: bold;
+}
+
+.subtitol-seccio-document {
+	font-size: 1.6em;
+	font-weight: bold;
+}
+
+.titol-apartat-document {
+	font-size: 1.3em;
+}
+
+.separador {
+	margin-bottom: 40px;
+}
+
+.taula-container {
+	page-break-inside: avoid;
+}
+
+.taula-dades {
+	border: 1px solid #CCCCCC;
+	width: 100%;
+	margin-bottom: 0px;
+}

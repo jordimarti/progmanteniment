@@ -18,7 +18,7 @@
 	            <% end %>"><%= link_to(t('.planificacio'), edit_planificacio_path(id: @edifici.planificacio.id, edifici_id: @edifici.id), :class => 'header-submenu-link') %></li>
 	      <li class="header-submenu-item <% if @submenu_actiu == 'document' %>
 	            header-submenu-actiu
-	            <% end %>"><%= link_to(t('.document'), document_path(edifici_id: @edifici.id), :class => 'header-submenu-link') %></li>
+	            <% end %>"><%= link_to(t('.document'), documents_index_path(edifici_id: @edifici.id), :class => 'header-submenu-link') %></li>
 	  	</ul>
     </div>
 	</div>
