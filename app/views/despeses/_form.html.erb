@@ -1,4 +1,4 @@
-<%= simple_form_for(@derrama, remote: true) do |f| %>
+<%= simple_form_for(@despesa, remote: true) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
@@ -24,6 +24,10 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, t('.guardar'), :class => 'button button-right' %>
+    <div class="row">
+      <div class="medium-12 columns">
+        <%= f.button :submit, t('.guardar'), :class => 'button button-right' %>
+      </div>
+    </div>
   </div>
 <% end %>

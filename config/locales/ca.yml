@@ -94,12 +94,12 @@ ca:
     menu_planificacio:
       titol_planificacio: "Planificació financera"
       info_previa: "Informació prèvia"
-      planificacio_fases: "Derrames"
+      planificacio_fases: "Despeses"
       calendari: "Calendari"
     llistat_fases:
       import: "Import total"
-      afegir_derrama: "Afegir derrama"
-    llistat_derrames:
+      afegir_despesa: "Afegir despesa"
+    llistat_despeses:
       concepte: "Concepte"
       import: "Import"
       data: "Data"
@@ -107,7 +107,9 @@ ca:
       guardar: "Guardar"
     update:
       guardat_ok: "Les dades s'han guardat correctament"
-  derrames:
+    calendari:
+      reinicialitzar: "Reinicialitzar"
+  despeses:
     form:
       guardar: "Guardar"
       gener: "Gener"
@@ -121,3 +123,7 @@ ca:
       octubre: "Octubre"
       novembre: "Novembre"
       desembre: "Desembre"
+  ingressos:
+    form:
+      guardar: "Guardar"
+      data: "Data"

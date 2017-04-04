@@ -18,7 +18,7 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'identificacio', 'identificacions'
   inflect.irregular 'operacio', 'operacions'
   inflect.irregular 'planificacio', 'planificacions'
-  inflect.irregular 'derrama', 'derrames'
+  inflect.irregular 'despesa', 'despeses'
   inflect.irregular 'ingres', 'ingressos'
   inflect.irregular 'tresoreria', 'tresoreries'
   inflect.irregular 'millora', 'millores'

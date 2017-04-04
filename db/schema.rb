@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170403155223) do
+ActiveRecord::Schema.define(version: 20170404142244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20170403155223) do
     t.datetime "xml_preventiu_updated_at"
   end
 
-  create_table "derrames", force: :cascade do |t|
+  create_table "despeses", force: :cascade do |t|
     t.integer  "edifici_id"
     t.integer  "fase_id"
     t.string   "concepte"

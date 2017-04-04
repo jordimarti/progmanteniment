@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
+  resources :despeses
   get 'documents/index'
 
   get 'operacions/import'
   get 'planificacions/fases', to: 'planificacions#fases', :as => :fases_planificacio
   get 'planificacions/calendari', to: 'planificacions#calendari', :as => :calendari
+  get 'planificacions/crea_valors_inicials', to: 'planificacions#crea_valors_inicials', :as => :crea_valors_inicials
   resources :arxiu_millores
   resources :arxiu_correctius
   resources :arxiu_preventius
   resources :preventius
   resources :tresoreries
   resources :ingressos
-  resources :derrames
   resources :planificacions
   resources :operacions do
     collection do
