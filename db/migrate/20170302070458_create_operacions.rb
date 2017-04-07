@@ -15,6 +15,7 @@ class CreateOperacions < ActiveRecord::Migration[5.0]
       t.integer :import_taxes
       t.integer :import_altres
       t.integer :import_total
+      t.string :responsable
 
       t.timestamps
     end

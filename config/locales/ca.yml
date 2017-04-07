@@ -67,12 +67,16 @@ ca:
       guardar: "Guardar"
       titol_llistat_actuacions: "Llistat d'actuacions"
       afegir_actuacio: "Afegir actuació"
+      operacio: "Actuació"
     menu_operacions:
       titol_actuacions: "Actuacions"
       llistat: "Llistat d'actuacions"
       importacio: "Importació d'arxius XML"
     llistat_operacions:
       descripcio: "Descripció"
+      tipus: "Tipus d'actuació"
+      periodicitat: "Periodicitat (en anys)"
+      responsable: "Responsable"
     import:
       guardar: "Guardar"
       llibre_edifici: "Llibre de l'edifici"
@@ -83,6 +87,28 @@ ca:
       importar_millora: "Operacions de millora."
     form:
       guardar: "Guardar"
+      preventiu: "Preventiu"
+      correctiu: "Correctiu: rehabilitació"
+      millora: "Correctiu: millora"
+      fonamentacio: "Fonamentació"
+      estructura_vertical: "Estructura vertical"
+      estructura_horitzontal: "Estructura horitzontal"
+      estructura_coberta: "Estructura de coberta"
+      estructura_escales: "Estructura d'escales"
+      tancaments_verticals: "Tancaments verticals: façanes, mitgeres i forats"
+      acabats_facana: "Acabats de façana"
+      fusteria_exterior: "Fusteria exterior i envidrament"
+      elements_adossats: "Elements adossats a façana"
+      altres_facana: "Altres elements de façana"
+      terrats: "Terrats i cobertes planes"
+      coberta_inclinada: "Cobertes inclinades"
+      aigua: "Instal·lació d'aigua"
+      electricitat: "Instal·lació d'electricitat"
+      sanejament: "Instal·lació de sanejament"
+      gas: "Instal·lació de gas"
+      ascensor: "Instal·lació d'ascensor"
+      altres_instalacions: "Altres instal·lacions"
+      altres_subsistemes: "Altres subsistemes"
   fases:
     index:
       titol_fases: "Fases d'intervenció"
@@ -130,3 +156,18 @@ ca:
     form:
       guardar: "Guardar"
       data: "Data"
+  simple_form:
+    labels:
+      edifici:
+        nom_edifici: "Nom de l'edifici"
+        ref_cadastral: "Referència cadastral"
+      operacio:
+        descripcio_ca: "Descripció"
+        tipus: "Tipologia"
+        sistema: "Sistema constructiu"
+        responsable: "Responsable"
+        periodicitat: "Periodicitat (en anys)"
+        import_obres: "Import de les obres"
+        import_honoraris: "Import dels honoraris"
+        import_taxes: "Import de les taxes"
+        import_altres: "Altres imports"
