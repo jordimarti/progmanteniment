@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  resources :referencia_calendari_preventius
   resources :despeses
   get 'documents/index'
 
   get 'operacions/import'
+  get 'operacions/calendari_preventiu'
   get 'planificacions/fases', to: 'planificacions#fases', :as => :fases_planificacio
   get 'planificacions/calendari', to: 'planificacions#calendari', :as => :calendari
   get 'planificacions/crea_valors_inicials', to: 'planificacions#crea_valors_inicials', :as => :crea_valors_inicials

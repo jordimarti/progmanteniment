@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Referencia Calendari Preventius</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Edifici</th>
+      <th>Operacio</th>
+      <th>Data any</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @referencia_calendari_preventius.each do |referencia_calendari_preventiu| %>
+      <tr>
+        <td><%= referencia_calendari_preventiu.edifici_id %></td>
+        <td><%= referencia_calendari_preventiu.operacio_id %></td>
+        <td><%= referencia_calendari_preventiu.data_any %></td>
+        <td><%= link_to 'Show', referencia_calendari_preventiu %></td>
+        <td><%= link_to 'Edit', edit_referencia_calendari_preventiu_path(referencia_calendari_preventiu) %></td>
+        <td><%= link_to 'Destroy', referencia_calendari_preventiu, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Referencia Calendari Preventiu', new_referencia_calendari_preventiu_path %>

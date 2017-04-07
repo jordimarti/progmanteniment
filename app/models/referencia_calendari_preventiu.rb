@@ -1,0 +1,2 @@
+class ReferenciaCalendariPreventiu < ApplicationRecord
+end

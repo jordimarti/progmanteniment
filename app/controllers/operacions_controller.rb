@@ -1,7 +1,7 @@
 class OperacionsController < ApplicationController
   include CheckUser
   before_action :set_operacio, only: [:show, :edit, :update, :destroy]
-  before_action :set_edifici, only: [:index, :import, :assignacions]
+  before_action :set_edifici, only: [:index, :import, :assignacions, :calendari_preventiu, :crear_calendari_preventiu]
   respond_to :html, :js
 
   def index
@@ -10,6 +10,7 @@ class OperacionsController < ApplicationController
     @submenu_actiu = 'operacions'
     @operacions_menu_actiu = 'llistat'
     @operacions = Operacio.where(edifici_id: params[:edifici_id]).order(created_at: :asc)
+    @actuacions_preventiu = Operacio.where(edifici_id: params[:edifici_id], tipus: 'preventiu')
   end
 
   def import
@@ -53,6 +54,51 @@ class OperacionsController < ApplicationController
     Operacio.where(id: params[:operacio_ids]).update_all({fase_id: params[:fase_id]})
     redirect_to fases_path(edifici_id: params[:edifici_id])
   end
+
+  def calendari_preventiu
+    @subnavigation = true
+    @submenu_actiu = 'calendari_preventiu'
+    # Primer esborrem les referències existents
+    referencies_calendari = ReferenciaCalendariPreventiu.where(:edifici_id => @edifici.id)
+    referencies_calendari.each do |ref_cal|
+      ref_cal.destroy
+    end
+    # Ara creem les noves referències
+    crear_calendari_preventiu
+    @actuacions = ReferenciaCalendariPreventiu.where(:edifici_id => @edifici.id)
+  end
+
+  def crear_calendari_preventiu
+    referencies = Operacio.where(edifici_id: @edifici.id)
+    any_inici = Time.now.year + 1
+    any_fi = any_inici + 10
+    referencies.each do |referencia|
+      operacio = Operacio.find(referencia.id)
+      if operacio.periodicitat >= 1.0
+        any = any_inici
+        while any < any_fi do
+          referencia_calendari = ReferenciaCalendariPreventiu.new
+          referencia_calendari.edifici_id = @edifici.id
+          referencia_calendari.operacio_id = referencia.id
+          referencia_calendari.data_any = any
+          referencia_calendari.sistema = referencia.sistema
+          referencia_calendari.responsable = referencia.responsable
+          referencia_calendari.save
+          any = any + operacio.periodicitat
+        end
+      end
+      if operacio.periodicitat < 1
+        referencia_calendari = ReferenciaCalendariPreventiu.new
+        referencia_calendari.edifici_id = @edifici.id
+        referencia_calendari.operacio_id = referencia.id
+        referencia_calendari.data_any = Time.now.year
+        referencia_calendari.sistema = referencia.sistema
+        referencia_calendari.responsable = referencia.responsable
+        referencia_calendari.save
+      end
+    end
+  end
+
 
   private
     def set_operacio

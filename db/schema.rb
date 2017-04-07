@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170404142244) do
+ActiveRecord::Schema.define(version: 20170407160850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -146,6 +146,16 @@ ActiveRecord::Schema.define(version: 20170404142244) do
     t.string   "sistema"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+  end
+
+  create_table "referencia_calendari_preventius", force: :cascade do |t|
+    t.integer  "edifici_id"
+    t.integer  "operacio_id"
+    t.integer  "data_any"
+    t.string   "responsable"
+    t.string   "sistema"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "tresoreries", force: :cascade do |t|

@@ -1,0 +1,1 @@
+json.partial! "referencia_calendari_preventius/referencia_calendari_preventiu", referencia_calendari_preventiu: @referencia_calendari_preventiu

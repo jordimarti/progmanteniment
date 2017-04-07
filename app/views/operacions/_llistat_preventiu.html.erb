@@ -1,0 +1,44 @@
+<% any_actual = Time.now.year %>
+<% any_final = any_actual + 10 %>
+<table>
+  <thead>
+    <tr>
+      <th><%= t('.sistema_constructiu') %></th>
+      <th><%= t('.menys_un_any') %></th>
+      <th><%= t('.primer') %></th>
+      <th><%= t('.segon') %></th>
+      <th><%= t('.tercer') %></th>
+      <th><%= t('.quart') %></th>
+      <th><%= t('.cinque') %></th>
+      <th><%= t('.sise') %></th>
+      <th><%= t('.sete') %></th>
+      <th><%= t('.vuite') %></th>
+      <th><%= t('.nove') %></th>
+      <th><%= t('.dese') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= t('.fonamentacio') %></td>
+      <% for any in any_actual..any_final
+        actuacio = @actuacions.where(sistema: 'fonamentacio', data_any: any)
+        if actuacio.count > 0 %>
+          <td class="existeix"></td>
+        <% else %>
+          <td class="no-existeix"></td>
+        <% end %>
+      <% end %>
+    </tr>
+    <tr>
+      <td><%= t('.estructura_vertical') %></td>
+      <% for any in any_actual..any_final
+        actuacio = @actuacions.where(sistema: 'estructura_vertical', data_any: any)
+        if actuacio.count > 0 %>
+          <td class="existeix"></td>
+        <% else %>
+          <td class="no-existeix"></td>
+        <% end %>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
