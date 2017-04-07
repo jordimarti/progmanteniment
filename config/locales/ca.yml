@@ -35,10 +35,12 @@ ca:
       projectes: "Projectes"
     subnavigation:
       identificacio: "Identificació"
+      actuacions: "Actuacions"
       deficiencies: "Deficiències"
       intervencions: "Intervencions"
       fases: "Fases"
       planificacio: "Planificació financera"
+      documents: "Documents"
   home:
     permisos:
       titol: "Accés denegat"
@@ -63,10 +65,11 @@ ca:
   operacions:
     index:
       guardar: "Guardar"
-      titol_llistat_operacions: "Llistat d'operacions"
+      titol_llistat_actuacions: "Llistat d'actuacions"
+      afegir_actuacio: "Afegir actuació"
     menu_operacions:
-      titol_operacions: "Operacions"
-      llistat: "Llistat d'operacions"
+      titol_actuacions: "Actuacions"
+      llistat: "Llistat d'actuacions"
       importacio: "Importació d'arxius XML"
     llistat_operacions:
       descripcio: "Descripció"

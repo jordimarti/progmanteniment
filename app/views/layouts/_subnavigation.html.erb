@@ -8,7 +8,7 @@
 	            <% end %>"><%= link_to(t('.identificacio'), edit_identificacio_path(@edifici.identificacio.id), :class => 'header-submenu-link') %></li>
 	      <li class="header-submenu-item <% if @submenu_actiu == 'operacions' %>
 	            header-submenu-actiu
-	            <% end %>"><%= link_to(t('.operacions'), operacions_path(edifici_id: @edifici.id), :class => 'header-submenu-link') %></li>
+	            <% end %>"><%= link_to(t('.actuacions'), operacions_path(edifici_id: @edifici.id), :class => 'header-submenu-link') %></li>
 	      
 	      <li class="header-submenu-item <% if @submenu_actiu == 'fases' %>
 	            header-submenu-actiu
@@ -16,9 +16,9 @@
 	      <li class="header-submenu-item <% if @submenu_actiu == 'planificacio' %>
 	            header-submenu-actiu
 	            <% end %>"><%= link_to(t('.planificacio'), edit_planificacio_path(id: @edifici.planificacio.id, edifici_id: @edifici.id), :class => 'header-submenu-link') %></li>
-	      <li class="header-submenu-item <% if @submenu_actiu == 'document' %>
+	      <li class="header-submenu-item <% if @submenu_actiu == 'documents' %>
 	            header-submenu-actiu
-	            <% end %>"><%= link_to(t('.document'), documents_index_path(edifici_id: @edifici.id), :class => 'header-submenu-link') %></li>
+	            <% end %>"><%= link_to(t('.documents'), documents_index_path(edifici_id: @edifici.id), :class => 'header-submenu-link') %></li>
 	  	</ul>
     </div>
 	</div>

@@ -29,19 +29,14 @@
     <div class="medium-12 columns">
       <div class="light-container operacions-container">
         <div class="operacions-title">
-          <h3 class="titol-operacions"><%= t('.titol_llistat_operacions') %></h3>
-          <p>
-            <%= link_to (new_operacio_path(edifici_id: @edifici.id)), remote: true, class: 'button button-right' do %>
-              <span class="suma">+</span> <%= t('.afegir_operacio') %>
-            <% end %>
-          </p>
+          <h3 class="titol-operacions"><%= t('.titol_llistat_actuacions') %></h3>
         </div>
         <div id="operacions">
           <%= render  :partial => '/operacions/llistat_operacions' %>
         </div>
         <div class="spacer"></div>
         <%= link_to (new_operacio_path(edifici_id: @edifici.id)), remote: true do %>
-          <span class="suma">+</span> <%= t('.afegir_operacio') %>
+          <span class="suma">+</span> <%= t('.afegir_actuacio') %>
         <% end %>
 
       </div>
