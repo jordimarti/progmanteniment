@@ -38,9 +38,28 @@ h3.titol-importacio {
 }
 
 td.existeix {
-	background-color: red;
+	padding: 0px;
 }
 
 td.no-existeix {
 	
+}
+
+.primera-actuacio {
+	width: 50%;
+	height: 40px;
+	float: left;
+}
+
+.segona-actuacio {
+	width: 50%;
+	height: 40px;
+	float: right;
+}
+
+.color-responsable {
+	width: 20px;
+	height: 20px;
+	float: left;
+	margin-right: 10px;
 }

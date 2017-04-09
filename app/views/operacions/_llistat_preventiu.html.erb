@@ -1,5 +1,3 @@
-<% any_actual = Time.now.year %>
-<% any_final = any_actual + 10 %>
 <table>
   <thead>
     <tr>
@@ -18,27 +16,30 @@
     </tr>
   </thead>
   <tbody>
+    <% @sistemes.each do |sistema| %>
     <tr>
-      <td><%= t('.fonamentacio') %></td>
-      <% for any in any_actual..any_final
-        actuacio = @actuacions.where(sistema: 'fonamentacio', data_any: any)
+      <td><%= sistema[0] %></td>
+      <% for any in @any_actual..@any_final
+        actuacio = @actuacions.where(sistema: sistema[1], data_any: any)
         if actuacio.count > 0 %>
-          <td class="existeix"></td>
+          <% if actuacio.count > 1 %>
+            <td class="existeix"><div class="primera-actuacio" style="background-color:<%= @color_responsable[actuacio.first.operacio.responsable] %>"></div><div class="segona-actuacio" style="background-color:<%= @color_responsable[actuacio.second.operacio.responsable] %>"></div></td>
+          <% else %>
+            <td class="existeix" style="background-color:<%= @color_responsable[actuacio.first.operacio.responsable] %>"></td>
+          <% end %>
         <% else %>
           <td class="no-existeix"></td>
         <% end %>
       <% end %>
     </tr>
-    <tr>
-      <td><%= t('.estructura_vertical') %></td>
-      <% for any in any_actual..any_final
-        actuacio = @actuacions.where(sistema: 'estructura_vertical', data_any: any)
-        if actuacio.count > 0 %>
-          <td class="existeix"></td>
-        <% else %>
-          <td class="no-existeix"></td>
-        <% end %>
-      <% end %>
-    </tr>
+    <% end %>
+    
   </tbody>
 </table>
+
+<div class="responsables">
+  <% @responsables.each do |responsable| %>
+    <div class="color-responsable" style="background-color:<%= @color_responsable[responsable] %>"></div>
+    <div class="nom-responsable"><%= responsable %></div>
+  <% end %>
+</div>

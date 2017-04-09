@@ -66,6 +66,12 @@ class OperacionsController < ApplicationController
     # Ara creem les noves referències
     crear_calendari_preventiu
     @actuacions = ReferenciaCalendariPreventiu.where(:edifici_id => @edifici.id)
+    @responsables = @actuacions.select(:responsable).map(&:responsable).uniq
+    colors = ['#375E97', '#FB6542', '#FFBB00', '#3F681C', '#5BC8AC', '#F18D9E', '#86AC41', '#7DA3A1']
+    @color_responsable = Hash[@responsables.zip colors]
+    @any_actual = Time.now.year
+    @any_final = @any_actual + 10
+    @sistemes = [[t('.fonamentacio'), 'fonamentacio'], [t('.estructura_vertical'), 'estructura_vertical'], [t('.estructura_horitzontal'), 'estructura_horitzontal'], [t('.estructura_coberta'), 'estructura_coberta'], [t('.estructura_escales'), 'estructura_escales'], [t('.tancaments_verticals'), 'tancaments_verticals'], [t('.acabats_facana'), 'acabats_facana'], [t('.fusteria_exterior'), 'fusteria_exterior'], [t('.elements_adossats'), 'elements_adossats'], [t('.altres_facana'), 'altres_facana'], [t('.terrats'), 'terrats'], [t('.coberta_inclinada'), 'coberta_inclinada'], [t('.aigua'), 'aigua'], [t('.electricitat'), 'electricitat'], [t('.sanejament'), 'sanejament'], [t('.gas'), 'gas'], [t('.ascensor'), 'ascensor'], [t('.altres_instalacions'), 'altres_instalacions'], [t('.altres_subsistemes'), 'altres_subsistemes']]
   end
 
   def crear_calendari_preventiu
@@ -74,7 +80,7 @@ class OperacionsController < ApplicationController
     any_fi = any_inici + 10
     referencies.each do |referencia|
       operacio = Operacio.find(referencia.id)
-      if operacio.periodicitat >= 1.0
+      if operacio.periodicitat != nil && operacio.periodicitat >= 1.0
         any = any_inici
         while any < any_fi do
           referencia_calendari = ReferenciaCalendariPreventiu.new
@@ -87,7 +93,7 @@ class OperacionsController < ApplicationController
           any = any + operacio.periodicitat
         end
       end
-      if operacio.periodicitat < 1
+      if operacio.periodicitat != nil && operacio.periodicitat < 1
         referencia_calendari = ReferenciaCalendariPreventiu.new
         referencia_calendari.edifici_id = @edifici.id
         referencia_calendari.operacio_id = referencia.id
