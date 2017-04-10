@@ -67,7 +67,7 @@ class OperacionsController < ApplicationController
     crear_calendari_preventiu
     @actuacions = ReferenciaCalendariPreventiu.where(:edifici_id => @edifici.id)
     @responsables = @actuacions.select(:responsable).map(&:responsable).uniq
-    colors = ['#00A5E6', '#375E97', '#FB6542', '#FFBB00', '#3F681C', '#5BC8AC', '#8BE7FF', '#F18D9E', '#86AC41', '#7DA3A1', '#FF2A92', '#D58200', '#9FCD00']
+    colors = ['#00A5E6', '#375E97', '#FB6542', '#FFBB00', '#3F681C', '#5BC8AC', '#8BE7FF', '#F18D9E', '#86AC41', '#7DA3A1', '#FF2A92', '#D58200', '#9FCD00', '#FFF57A', '#B60900', '#890085']
     @color_responsable = Hash[@responsables.zip colors]
     @any_actual = Time.now.year
     @any_final = @any_actual + 10
