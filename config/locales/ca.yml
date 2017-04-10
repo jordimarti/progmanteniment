@@ -72,6 +72,7 @@ ca:
       titol_actuacions: "Actuacions"
       llistat: "Llistat d'actuacions"
       importacio: "Importació d'arxius XML"
+      calendari_preventiu: "Calendari de manteniment preventiu"
     llistat_operacions:
       descripcio: "Descripció"
       tipus: "Tipus d'actuació"
@@ -129,6 +130,22 @@ ca:
       ascensor: "Instal·lació d'ascensor"
       altres_instalacions: "Altres instal·lacions"
       altres_subsistemes: "Altres subsistemes"
+    llistat_preventiu:
+      menys_un_any: "<1 any"
+      primer: "1r"
+      segon: "2n"
+      tercer: "3r"
+      quart: "4rt"
+      cinque: "5è"
+      sise: "6è"
+      sete: "7è"
+      vuite: "8è"
+      nove: "9è"
+      dese: "10è"
+    assignacions:
+      titol_fases: "Assignació d'actuacions a la fase: "
+      descripcio: "Descripció"
+      import_total: "Import"
   fases:
     index:
       titol_fases: "Fases d'intervenció"
@@ -139,6 +156,8 @@ ca:
       import_total: "Import"
     form:
       guardar: "Guardar"
+    llistat_fases:
+      assignar_operacions: "Assignar actuacions"
   planificacions:  
     menu_planificacio:
       titol_planificacio: "Planificació financera"
@@ -176,6 +195,10 @@ ca:
     form:
       guardar: "Guardar"
       data: "Data"
+  documents:
+    index:
+      titol_document: "Documents"
+      genera_programa: "Programa de manteniment"
   simple_form:
     labels:
       edifici:
@@ -191,3 +214,9 @@ ca:
         import_honoraris: "Import dels honoraris"
         import_taxes: "Import de les taxes"
         import_altres: "Altres imports"
+      planificacio:
+        fons_propis: "Fons propis"
+        subvencions_solicitades: "Subvencions sol·licitades"
+        subvencions_atorgades: "Subvencions atorgades"
+        import_financar: "Import a finançar"
+        forma_financar: "Forma de financiació"

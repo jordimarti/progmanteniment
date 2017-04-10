@@ -57,7 +57,8 @@ class OperacionsController < ApplicationController
 
   def calendari_preventiu
     @subnavigation = true
-    @submenu_actiu = 'calendari_preventiu'
+    @submenu_actiu = 'operacions'
+    @operacions_menu_actiu = 'calendari_preventiu'
     # Primer esborrem les referències existents
     referencies_calendari = ReferenciaCalendariPreventiu.where(:edifici_id => @edifici.id)
     referencies_calendari.each do |ref_cal|

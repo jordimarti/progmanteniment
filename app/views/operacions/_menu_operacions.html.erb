@@ -10,8 +10,8 @@
 		<div class="medium-12 columns">
 			<div class="menu-seccio">
 				<ul class="planificacions-menu-list">
-					<li class="planificacions-menu-item <% if @operacions_menu_actiu == 'llistat' %>item-actiu<% end %>"><%= link_to(t('.llistat'), operacions_path(edifici_id: @edifici.id), :class => 'seccio-submenu-link') %></li>
 					<li class="planificacions-menu-item <% if @operacions_menu_actiu == 'importacio' %>item-actiu<% end %>"><%= link_to(t('.importacio'), operacions_import_path(edifici_id: @edifici.id), :class => 'seccio-submenu-link') %></li>
+					<li class="planificacions-menu-item <% if @operacions_menu_actiu == 'llistat' %>item-actiu<% end %>"><%= link_to(t('.llistat'), operacions_path(edifici_id: @edifici.id), :class => 'seccio-submenu-link') %></li>
 					<li class="planificacions-menu-item <% if @operacions_menu_actiu == 'calendari_preventiu' %>item-actiu<% end %>"><%= link_to(t('.calendari_preventiu'), operacions_calendari_preventiu_path(edifici_id: @edifici.id), :class => 'seccio-submenu-link') %></li>
 				</ul>
 			</div>

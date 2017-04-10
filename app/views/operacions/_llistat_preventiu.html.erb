@@ -1,7 +1,7 @@
-<table>
+<table class="manteniment-preventiu">
   <thead>
     <tr>
-      <th><%= t('.sistema_constructiu') %></th>
+      <th style="width: 250px;"><%= t('.sistema_constructiu') %></th>
       <th><%= t('.menys_un_any') %></th>
       <th><%= t('.primer') %></th>
       <th><%= t('.segon') %></th>
@@ -18,7 +18,7 @@
   <tbody>
     <% @sistemes.each do |sistema| %>
     <tr>
-      <td><%= sistema[0] %></td>
+      <td style="width: 250px;"><%= sistema[0] %></td>
       <% for any in @any_actual..@any_final
         actuacio = @actuacions.where(sistema: sistema[1], data_any: any)
         if actuacio.count > 0 %>
