@@ -5,6 +5,7 @@
       <th><%= t('.tipus') %></th>
       <th><%= t('.periodicitat') %></th>
       <th><%= t('.responsable') %></th>
+      <th><%= t('.sistema') %></th>
       <th width="30"></th>
     </tr>
   </thead>
@@ -27,6 +28,7 @@
       <td><%= tipus_actuacio %></td>
       <td><%= operacio.periodicitat %></td>
       <td><%= operacio.responsable %></td>
+      <td><%= operacio.sistema %></td>
       <td>
       	<%= link_to operacio_path(operacio), remote: true, method: :delete,  data: { confirm: 'Segur que vols eliminar?' } do %>
 				  <div class="operacio-eliminar button-right">

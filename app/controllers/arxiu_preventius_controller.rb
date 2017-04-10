@@ -31,6 +31,17 @@ class ArxiuPreventiusController < ApplicationController
         operacio.periodicitat_text_ca = node.text.to_s if node.name.eql? 'periodicitat_text_ca'
         operacio.periodicitat_text_es = node.text.to_s if node.name.eql? 'periodicitat_text_es'
         operacio.tipus = 'preventiu'
+        operacio.responsable = node.text.to_s if node.name.eql? 'responsable_ca'
+        operacio.sistema = node.text.to_s if node.name.eql? 'sistema'
+        # La definició de sistemes constructius és diferent entre el llibre de l'edifici i el programa de manteniment
+        case operacio.sistema
+        when 'estructura'
+          operacio.sistema = 'estructura_vertical'
+        when 'tancaments'
+          operacio.sistema = 'tancaments_verticals'
+        when 'cobertes'
+          operacio.sistema = 'terrats'
+        end
       end
       operacio.save
     end
