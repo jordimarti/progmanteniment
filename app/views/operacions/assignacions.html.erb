@@ -16,7 +16,7 @@
         <table>
           <thead>
             <tr>
-              <th style="width: 30px"></th>
+              <th style="width: 60px"><a href="#" onclick="selectAll()">Tots</a></th>
               <th><%= t('.descripcio') %></th>
               <th><%= t('.import_total') %></th>
             </tr>
@@ -41,3 +41,13 @@
   <% end %>
 
 </div>
+
+<script type="text/javascript">
+  function selectAll(){
+    $("input:checkbox").each(function(){
+      $(this).attr('checked', true);
+    });
+
+    return false;
+  }
+</script>
