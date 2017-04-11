@@ -13,25 +13,88 @@
     <input id="fase_id" name="fase_id" type="hidden" value="<%= params[:fase_id] %>" />
     <div class="row">
       <div class="medium-12 columns">
-        <table>
-          <thead>
-            <tr>
-              <th style="width: 60px"><a href="#" onclick="selectAll()">Tots</a></th>
-              <th><%= t('.descripcio') %></th>
-              <th><%= t('.import_total') %></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @operacions.each do |operacio| %>
-              <tr>
-                <td><%= check_box_tag "operacio_ids[]", operacio.id %></td>
-                <td><%= operacio.descripcio_ca %></td>
-                <% import_total = operacio.import_obres.to_i + operacio.import_honoraris.to_i + operacio.import_taxes.to_i + operacio.import_altres.to_i %> 
-                <td><%= import_total %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+        <div class="heavy-container">
+          <ul class="tabs" data-tabs id="example-tabs">
+            <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Preventiu</a></li>
+            <li class="tabs-title"><a href="#panel2">Correctiu: rehabilitació</a></li>
+            <li class="tabs-title"><a href="#panel3">Correctiu: millores</a></li>
+          </ul>
+          <div class="tabs-content" data-tabs-content="example-tabs">
+            <div class="tabs-panel is-active" id="panel1">
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width: 60px"><a href="#" onclick="selectAll()">Tots</a></th>
+                    <th><%= t('.descripcio') %></th>
+                    <th><%= t('.import_total') %></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% operacions_preventiu = @operacions.where(tipus: 'preventiu') %>
+                  <% operacions_preventiu.each do |operacio| %>
+                    <tr>
+                      <td><%= check_box_tag "operacio_ids[]", operacio.id %></td>
+                      <td><%= operacio.descripcio_ca %></td>
+                      <% import_total = operacio.import_obres.to_i + operacio.import_honoraris.to_i + operacio.import_taxes.to_i + operacio.import_altres.to_i %> 
+                      <td><%= import_total %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <div class="tabs-panel" id="panel2">
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width: 60px"><a href="#" onclick="selectAll()">Tots</a></th>
+                    <th><%= t('.descripcio') %></th>
+                    <th><%= t('.import_total') %></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% operacions_correctiu = @operacions.where(tipus: 'correctiu') %>
+                  <% operacions_correctiu.each do |operacio| %>
+                    <tr>
+                      <td><%= check_box_tag "operacio_ids[]", operacio.id %></td>
+                      <td><%= operacio.descripcio_ca %></td>
+                      <% import_total = operacio.import_obres.to_i + operacio.import_honoraris.to_i + operacio.import_taxes.to_i + operacio.import_altres.to_i %> 
+                      <td><%= import_total %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <div class="tabs-panel" id="panel3">
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width: 60px"><a href="#" onclick="selectAll()">Tots</a></th>
+                    <th><%= t('.descripcio') %></th>
+                    <th><%= t('.import_total') %></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% operacions_millora = @operacions.where(tipus: 'millora') %>
+                  <% operacions_millora.each do |operacio| %>
+                    <tr>
+                      <td><%= check_box_tag "operacio_ids[]", operacio.id %></td>
+                      <td><%= operacio.descripcio_ca %></td>
+                      <% import_total = operacio.import_obres.to_i + operacio.import_honoraris.to_i + operacio.import_taxes.to_i + operacio.import_altres.to_i %> 
+                      <td><%= import_total %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div> 
+      </div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div class="row">
+      <div class="medium-12 columns">
         <div class="form-actions">
           <%= submit_tag "Assigna", class: 'button' %>
         </div>
