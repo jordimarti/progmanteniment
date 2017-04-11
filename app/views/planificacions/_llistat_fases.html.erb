@@ -11,11 +11,14 @@
 	<p class="opcions-fase"><%= t('.import') %>: <%= import_fase %> €</p>
 	<div class="light-container container-despeses-fase">
 		<div id="despeses">
-      <%= render :partial => '/planificacions/llistat_despeses', locals: {fase_id: fase.id} %>
+      <% if @despeses.where(fase_id: fase.id).count > 0 %>
+        <%= render :partial => '/planificacions/llistat_despeses', locals: {fase_id: fase.id} %>
+      <% end %>
       <% import_despeses = 0 %>
       <% @despeses.where(fase_id: fase.id).each do |despesa| %>
       	<% import_despeses += despesa.import %>
       <% end %>
+      
       <p>
       	Total: <%= import_despeses %> €.
       	<% 
@@ -35,5 +38,7 @@
       <span class="suma">+</span> <%= t('.afegir_despesa') %>
     <% end %>
 	</div>
+
+  <div class="spacer"></div>
 
 <% end %>
