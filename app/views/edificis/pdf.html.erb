@@ -21,5 +21,170 @@
 		%>
 
 		Situació: <%= adreca %>	
+
+<%
+		@actuacions = ReferenciaCalendariPreventiu.where(:edifici_id => edifici.id)
+    @responsables = @actuacions.select(:responsable).map(&:responsable).uniq
+    colors = ['#00A5E6', '#375E97', '#FB6542', '#FFBB00', '#3F681C', '#5BC8AC', '#8BE7FF', '#F18D9E', '#86AC41', '#7DA3A1', '#FF2A92', '#D58200', '#9FCD00', '#FFF57A', '#B60900', '#890085']
+    @color_responsable = Hash[@responsables.zip colors]
+    @any_actual = Time.now.year
+    @any_final = @any_actual + 10
+    @sistemes = [[t('.fonamentacio'), 'fonamentacio'], [t('.estructura_vertical'), 'estructura_vertical'], [t('.estructura_horitzontal'), 'estructura_horitzontal'], [t('.estructura_coberta'), 'estructura_coberta'], [t('.estructura_escales'), 'estructura_escales'], [t('.tancaments_verticals'), 'tancaments_verticals'], [t('.acabats_facana'), 'acabats_facana'], [t('.fusteria_exterior'), 'fusteria_exterior'], [t('.elements_adossats'), 'elements_adossats'], [t('.altres_facana'), 'altres_facana'], [t('.terrats'), 'terrats'], [t('.coberta_inclinada'), 'coberta_inclinada'], [t('.aigua'), 'aigua'], [t('.electricitat'), 'electricitat'], [t('.sanejament'), 'sanejament'], [t('.gas'), 'gas'], [t('.ascensor'), 'ascensor'], [t('.altres_instalacions'), 'altres_instalacions'], [t('.altres_subsistemes'), 'altres_subsistemes']]
+%>
+<table class="manteniment-preventiu-pdf unstriped">
+  <thead>
+    <tr>
+      <th class="header-cell" style="width: 150px;"><%= t('.sistema_constructiu') %></th>
+      <th class="header-cell"><%= t('.menys_un_any') %></th>
+      <th class="header-cell"><%= t('.primer') %></th>
+      <th class="header-cell"><%= t('.segon') %></th>
+      <th class="header-cell"><%= t('.tercer') %></th>
+      <th class="header-cell"><%= t('.quart') %></th>
+      <th class="header-cell"><%= t('.cinque') %></th>
+      <th class="header-cell"><%= t('.sise') %></th>
+      <th class="header-cell"><%= t('.sete') %></th>
+      <th class="header-cell"><%= t('.vuite') %></th>
+      <th class="header-cell"><%= t('.nove') %></th>
+      <th class="header-cell"><%= t('.dese') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sistemes.each do |sistema| %>
+    <tr>
+      <td class="body-cell titol-cell" style="width: 150px;"><%= sistema[0] %></td>
+      <% for any in @any_actual..@any_final
+        actuacio = @actuacions.where(sistema: sistema[1], data_any: any)
+        if actuacio.count > 0 %>
+          <% if actuacio.count > 1 %>
+            <td class="body-cell existeix"><div class="primera-actuacio-pdf" style="background-color:<%= @color_responsable[actuacio.first.operacio.responsable] %>"></div><div class="segona-actuacio-pdf" style="background-color:<%= @color_responsable[actuacio.second.operacio.responsable] %>"></div></td>
+          <% else %>
+            <td class="body-cell existeix" style="background-color:<%= @color_responsable[actuacio.first.operacio.responsable] %>"></td>
+          <% end %>
+        <% else %>
+          <td class="body-cell no-existeix"></td>
+        <% end %>
+      <% end %>
+    </tr>
+    <% end %>
+    
+  </tbody>
+</table>
+
+<div class="responsables">
+  <% @responsables.each do |responsable| %>
+    <div class="color-responsable-pdf" style="background-color:<%= @color_responsable[responsable] %>"></div>
+    <div class="nom-responsable"><%= responsable %></div>
+  <% end %>
+</div>
+	</div>
+</div>
+
+<div class="salt-pagina"></div>
+
+<div class="row">
+	<div class="medium-12 columns">
+		<h3>Llistat d'actuacions de manteniment preventiu</h3>
+		<ul>
+		<% operacions = edifici.operacions.where(tipus: 'preventiu') %>
+		<% operacions.each do |operacio| %>
+			<li><%= operacio.descripcio_ca %></li>
+		<% end %>
+		</ul>
+	</div>
+</div>
+
+<div class="row">
+	<div class="medium-12 columns">
+		<h3>Llistat d'actuacions de manteniment correctiu</h3>
+		<ul>
+		<% operacions = edifici.operacions.where(tipus: 'correctiu') %>
+		<% operacions.each do |operacio| %>
+			<li><%= operacio.descripcio_ca %></li>
+		<% end %>
+		</ul>
+	</div>
+</div>
+
+<div class="salt-pagina"></div>
+
+<div class="row">
+	<div class="medium-12 columns">
+		<h3>Planificació financera</h3>
+		<% mes_actual = Date.today.month %>
+<% tresoreria = edifici.planificacio.fons_propis %>
+<% primer_any = Date.today.year %>
+<% ultim_any = edifici.despeses.order(:data_any).last.data_any %>
+<% 
+	for i in primer_any..ultim_any %>
+	<table class="calendari">
+	  <thead>
+	    <tr>
+	      <th><%= i %></th>
+	      <th><%= t('.gener') %></th>
+	      <th><%= t('.febrer') %></th>
+	      <th><%= t('.març') %></th>
+	      <th><%= t('.abril') %></th>
+	      <th><%= t('.maig') %></th>
+	      <th><%= t('.juny') %></th>
+	      <th><%= t('.juliol') %></th>
+	      <th><%= t('.agost') %></th>
+	      <th><%= t('.setembre') %></th>
+	      <th><%= t('.octubre') %></th>
+	      <th><%= t('.novembre') %></th>
+	      <th><%= t('.desembre') %></th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr>
+	      <th><%= t('.ingressos') %></th>
+		    <% for j in 1..12 %>
+		    	<% ingres = edifici.ingressos.where(data_mes: j, data_any: i) %>
+		    	<% if ingres.exists? %>
+		    		<td>
+			    		<%= link_to edit_ingres_path(ingres.last, edifici_id: ingres.last.edifici_id), remote: true do %>
+				    		<%= ingres.last.import %>
+				  		<% end %>
+			  		</td>
+		    	<% else %>
+		    		<td></td>
+		    	<% end %>
+		    <% end %>
+    	</tr>
+    	<tr>
+    		<th><%= t('.despeses') %></th>
+    		<% for j in 1..12 %>
+		      <% if i == primer_any && j < mes_actual - 1 %>
+		    		<td></td>
+		    	<% elsif 
+			      mes_despesa = edifici.despeses.where(data_mes: j, data_any: i)
+			      if mes_despesa.exists? %>
+			        <td><%= mes_despesa.last.import %></td>
+			      <% else %>
+			        <td></td>
+			      <% end %>
+			    <% end %>
+		    <% end %>
+    	</tr>
+    	<tr>
+    		<th><%= t('.tresoreria') %></th>
+    		<% for j in 1..12 %>
+	    		<% tresoreria = edifici.tresoreries.where(data_mes: j, data_any: i).last
+	    		if tresoreria != nil %>
+	    			<td>
+	    				<% if tresoreria.import < 0 %>
+	    					<span class="valor-negatiu"><%= tresoreria.import %></span>
+	    				<% else %>
+	    					<span class="valor-positiu"><%= tresoreria.import %></span>
+	    				<% end %>
+	    			</td>
+	    		<% else %>
+	    			<td></td>
+	    		<% end %>
+		    <% end %>
+    	</tr>
+    </tbody>
+  </table>
+<% end %>
+
 	</div>
 </div>
