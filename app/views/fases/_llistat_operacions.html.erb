@@ -1,17 +1,21 @@
-<table>
-  <thead>
-    <tr>
-      <th><%= t('.descripcio') %></th>
-      <th><%= t('.import_total') %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @operacions.where(fase_id: fase_id).each do |operacio| %>
-    <tr>
-      <td><%= operacio.descripcio_ca %></td>
-      <% import_total = operacio.import_obres.to_i + operacio.import_honoraris.to_i + operacio.import_taxes.to_i + operacio.import_altres.to_i %> 
-      <td><%= import_total %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<% if @operacions.where(fase_id: fase_id).count > 0 %>
+  <table>
+    <thead>
+      <tr>
+        <th><%= t('.descripcio') %></th>
+        <th><%= t('.import_total') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @operacions.where(fase_id: fase_id).each do |operacio| %>
+      <tr>
+        <td><%= operacio.descripcio_ca %></td>
+        <% import_total = operacio.import_obres.to_i + operacio.import_honoraris.to_i + operacio.import_taxes.to_i + operacio.import_altres.to_i %> 
+        <td><%= import_total %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>Assigna actuacions a aquesta fase.</p>
+<% end %>
