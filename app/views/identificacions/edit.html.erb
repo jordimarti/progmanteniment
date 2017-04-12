@@ -26,9 +26,225 @@
 			<div class="light-container">
 				<div class="row">
 					<div class="medium-12 columns">
-						<div class="identificacio-item">
-							<%= render 'form', identificacio: @identificacio %>
+					<%= simple_form_for @identificacio do |f| %>
+  					<%= f.error_notification %>
+						<div class="form-inputs">
+
+							<ul class="tabs" data-tabs id="example-tabs">
+		            <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Edifici</a></li>
+		            <li class="tabs-title"><a href="#panel2">Propietat</a></li>
+		            <li class="tabs-title"><a href="#panel3">Tècnic redactor</a></li>
+		          </ul>
+		          <div class="tabs-content" data-tabs-content="example-tabs">
+		            <div class="tabs-panel is-active" id="panel1">
+		              <div class="identificacio-title">
+							      <span class="title"><%= t('.dades_edifici') %></span>
+							    </div>
+							    <div class="row">
+							      <div class="medium-2 columns">
+							        <%= f.input :tipus_via, collection: ['Avinguda', 'Carrer', 'Carretera', 'Passeig', 'Passatge', 'Plaça', 'Rambla', 'Ronda'] %>
+							      </div>
+							      <div class="medium-6 columns">
+							        <%= f.input :nom_via %>
+							      </div>
+							      <div class="medium-2 columns">
+							        <%= f.input :numero_via %>
+							      </div>
+							      <div class="medium-2 columns">
+							        <%= f.input :bloc %>
+							      </div>
+							    </div>
+
+							    <div class="row">
+							      <div class="medium-2 columns">
+							        <%= f.input :codi_postal %>
+							      </div>
+							      <div class="medium-6 columns">
+							        <%= f.input :poblacio %>
+							      </div>
+							      <div class="medium-4 columns">
+							        <%= f.input :provincia %>
+							      </div>
+							    </div>
+
+							    <div class="row">
+							      <div class="medium-6 columns">
+							        <%= f.input :foto_facana, as: :file %>
+							        <%= image_tag @edifici.identificacio.foto_facana.url(:medium) %>
+							      </div>
+							    </div>
+		            </div>
+		            <div class="tabs-panel is-active" id="panel2">
+		              <div class="row">
+		              	<fieldset class="medium-6 columns">
+							        <%= f.input :regim_juridic, 
+							          :collection => [[t('.propietat_horitzontal'), 'Propietat horitzontal'], [t('.propietat_vertical'), 'Propietat vertical']], 
+							          :as => :radio_buttons %>
+							      </fieldset>
+		              </div>
+		              
+		              <div class="spacer"></div>
+		              <div class="identificacio-title">
+							      <span class="title"><%= t('.propietat') %></span>
+							    </div>
+
+		              <div class="row">
+		              	<div class="medium-4 columns">
+		              		<%= f.input :nom_propietat %>
+		              	</div>
+		              	<div class="medium-8 columns">
+		              		<%= f.input :cognoms_propietat %>
+		              	</div>
+		              </div>
+		              <div class="row">
+		              	<div class="medium-4 columns">
+		              		<%= f.input :tipus_identificacio_propietat, collection: ['NIF', 'NIE', 'CIF'] %>
+		              	</div>
+		              	<div class="medium-4 columns end">
+		              		<%= f.input :identificacio_propietat %>
+		              	</div>
+		              </div>
+		              <div class="row">
+		              	<div class="medium-4 columns">
+		              		<%= f.input :tipus_via_propietat, collection: ['Avinguda', 'Carrer', 'Carretera', 'Passeig', 'Passatge', 'Plaça', 'Rambla', 'Ronda'] %>
+		              	</div>
+		              	<div class="medium-8 columns">
+		              		<%= f.input :adreca_propietat %>
+		              	</div>
+		              </div>
+		              <div class="row">
+		              	<div class="medium-4 columns">
+		              		<%= f.input :codi_postal_propietat %>
+		              	</div>
+		              	<div class="medium-4 columns">
+		              		<%= f.input :poblacio_propietat %>
+		              	</div>
+		              	<div class="medium-4 columns">
+		              		<%= f.input :provincia_propietat %>
+		              	</div>
+		              </div>
+		              <div class="row">
+		              	<div class="medium-4 columns">
+		              		<%= f.input :telefon_propietat %>
+		              	</div>
+		              	<div class="medium-4 columns end">
+		              		<%= f.input :email_propietat %>
+		              	</div>
+		              </div>
+
+		              <div class="spacer"></div>
+		              <div class="identificacio-title">
+							      <span class="title"><%= t('.representant') %></span>
+							    </div>
+
+							    <div class="row">
+		              	<div class="medium-4 columns">
+		              		<%= f.input :nom_representant %>
+		              	</div>
+		              	<div class="medium-8 columns">
+		              		<%= f.input :cognoms_representant %>
+		              	</div>
+		              </div>
+		              <div class="row">
+		              	<div class="medium-4 columns">
+		              		<%= f.input :tipus_identificacio_representant, collection: ['NIF', 'NIE', 'CIF'] %>
+		              	</div>
+		              	<div class="medium-4 columns end">
+		              		<%= f.input :identificacio_representant %>
+		              	</div>
+		              </div>
+		              <div class="row">
+		              	<div class="medium-4 columns">
+		              		<%= f.input :tipus_via_representant, collection: ['Avinguda', 'Carrer', 'Carretera', 'Passeig', 'Passatge', 'Plaça', 'Rambla', 'Ronda'] %>
+		              	</div>
+		              	<div class="medium-8 columns">
+		              		<%= f.input :adreca_representant %>
+		              	</div>
+		              </div>
+		              <div class="row">
+		              	<div class="medium-4 columns">
+		              		<%= f.input :codi_postal_representant %>
+		              	</div>
+		              	<div class="medium-4 columns">
+		              		<%= f.input :poblacio_representant %>
+		              	</div>
+		              	<div class="medium-4 columns">
+		              		<%= f.input :provincia_representant %>
+		              	</div>
+		              </div>
+		              <div class="row">
+		              	<div class="medium-4 columns">
+		              		<%= f.input :telefon_representant %>
+		              	</div>
+		              	<div class="medium-4 columns end">
+		              		<%= f.input :email_representant %>
+		              	</div>
+		              </div>
+
+		            </div>
+		            <div class="tabs-panel is-active" id="panel3">
+		              <div class="row">
+		              	<div class="medium-4 columns">
+		              		<%= f.input :nom_tecnic %>
+		              	</div>
+		              	<div class="medium-8 columns">
+		              		<%= f.input :cognoms_tecnic %>
+		              	</div>
+		              </div>
+		              <div class="row">
+		              	<div class="medium-4 columns">
+		              		<%= f.input :tipus_identificacio_tecnic, collection: ['NIF', 'NIE', 'CIF'] %>
+		              	</div>
+		              	<div class="medium-4 columns end">
+		              		<%= f.input :identificacio_tecnic %>
+		              	</div>
+		              </div>
+		              <div class="row">
+		              	<div class="medium-4 columns">
+		              		<%= f.input :titulacio_tecnic %>
+		              	</div>
+		              	<div class="medium-4 columns">
+		              		<%= f.input :colegi_tecnic %>
+		              	</div>
+		              	<div class="medium-4 columns">
+		              		<%= f.input :num_colegiat_tecnic %>
+		              	</div>
+		              </div>
+		              <div class="row">
+		              	<div class="medium-4 columns">
+		              		<%= f.input :tipus_via_tecnic, collection: ['Avinguda', 'Carrer', 'Carretera', 'Passeig', 'Passatge', 'Plaça', 'Rambla', 'Ronda'] %>
+		              	</div>
+		              	<div class="medium-8 columns">
+		              		<%= f.input :adreca_tecnic %>
+		              	</div>
+		              </div>
+		              <div class="row">
+		              	<div class="medium-4 columns">
+		              		<%= f.input :codi_postal_tecnic %>
+		              	</div>
+		              	<div class="medium-4 columns">
+		              		<%= f.input :poblacio_tecnic %>
+		              	</div>
+		              	<div class="medium-4 columns">
+		              		<%= f.input :provincia_tecnic %>
+		              	</div>
+		              </div>
+		              <div class="row">
+		              	<div class="medium-4 columns">
+		              		<%= f.input :telefon_tecnic %>
+		              	</div>
+		              	<div class="medium-4 columns end">
+		              		<%= f.input :email_tecnic %>
+		              	</div>
+		              </div>
+		            </div>
+		          </div>
 						</div>
+						<div class="spacer"></div>
+						<div class="form-actions">
+					    <%= f.button :submit, t('.guardar'), :class => 'button button-right' %>
+					  </div>
+					<% end %>
 					</div>
 				</div>
 			</div>

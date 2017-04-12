@@ -104,6 +104,33 @@ table.manteniment-preventiu {
 		margin-right: 8px;
 	}
 
+	.taula-container {
+		page-break-inside: avoid;
+	}
+
+	.taula-dades {
+		border: none;
+		border-bottom: 1px solid #CCCCCC;
+		width: 100%;
+		margin-bottom: 0px;
+	}
+
+	.taula-dades-final {
+		border: none;
+		border-bottom: 1px solid #333333;
+		width: 100%;
+		margin-bottom: 50px;
+	}
+
+	.titol-taula {
+		font-weight: bold;
+		page-break-after: avoid;
+	}
+
+	.taula-dos-columnes {
+		width: 50%;
+	}
+
 /* FINAL PDF **************/
 
 

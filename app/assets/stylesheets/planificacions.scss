@@ -55,3 +55,21 @@ p.consell {
 .valor-negatiu {
 	color: red;
 }
+
+
+/* PDF ****************/
+
+	table.calendari-pdf {
+		border: 1px solid #ccc;
+		border-collapse: collapse;
+	}
+
+	.calendari-header-cell {
+		border: 1px solid #ccc;
+	}
+
+	.calendari-body-cell {
+		border: 1px solid #ccc;
+	}
+
+
