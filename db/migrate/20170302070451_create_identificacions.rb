@@ -6,7 +6,7 @@ class CreateIdentificacions < ActiveRecord::Migration[5.0]
       t.string :nom_via
       t.string :numero_via
       t.string :bloc
-      t.integer :codi_postal
+      t.string :codi_postal
       t.string :poblacio
       t.string :provincia
       t.string :regim_juridic
@@ -16,7 +16,7 @@ class CreateIdentificacions < ActiveRecord::Migration[5.0]
       t.string :cognoms_propietat
       t.string :tipus_via_propietat
       t.string :adreca_propietat
-      t.integer :codi_postal_propietat
+      t.string :codi_postal_propietat
       t.string :poblacio_propietat
       t.string :provincia_propietat
       t.string :telefon_propietat
@@ -27,7 +27,7 @@ class CreateIdentificacions < ActiveRecord::Migration[5.0]
       t.string :cognoms_representant
       t.string :tipus_via_representant
       t.string :adreca_representant
-      t.integer :codi_postal_representant
+      t.string :codi_postal_representant
       t.string :poblacio_representant
       t.string :provincia_representant
       t.string :telefon_representant
@@ -41,7 +41,7 @@ class CreateIdentificacions < ActiveRecord::Migration[5.0]
       t.string :num_colegiat_tecnic
       t.string :tipus_via_tecnic
       t.string :adreca_tecnic
-      t.integer :codi_postal_tecnic
+      t.string :codi_postal_tecnic
       t.string :poblacio_tecnic
       t.string :provincia_tecnic
       t.string :telefon_tecnic

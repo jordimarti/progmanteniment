@@ -85,21 +85,26 @@ table.manteniment-preventiu {
 		
 	}
 
+	.actuacio-pdf {
+		width: 100%;
+		height: 20px;
+	}
+
 	.primera-actuacio-pdf {
-		width: 50%;
-		height: 18px;
+		width: 51%;
+		height: 20px;
 		float: left;
 	}
 
 	.segona-actuacio-pdf {
 		width: 50%;
-		height: 18px;
-		float: right;
+		height: 20px;
+		margin-left: 50%;
 	}
 
 	.color-responsable-pdf {
-		width: 13px;
-		height: 13px;
+		width: 18px;
+		height: 18px;
 		float: left;
 		margin-right: 8px;
 	}
@@ -113,6 +118,10 @@ table.manteniment-preventiu {
 		border-bottom: 1px solid #CCCCCC;
 		width: 100%;
 		margin-bottom: 0px;
+	}
+
+	td.dades-cell {
+		padding: 0px;
 	}
 
 	.taula-dades-final {
