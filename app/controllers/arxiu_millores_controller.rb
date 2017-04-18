@@ -26,8 +26,8 @@ class ArxiuMilloresController < ApplicationController
       operacio = Operacio.new
       operacio.edifici_id = @arxiu_millora.edifici_id
       node.elements.each do |node|
-        operacio.descripcio_ca = node.text.to_s if node.name.eql? 'descripcio'
-        operacio.descripcio_es = node.text.to_s if node.name.eql? 'descripcio'
+        operacio.descripcio_ca = node.text.to_s if node.name.eql? 'nom'
+        operacio.descripcio_es = node.text.to_s if node.name.eql? 'nom'
         operacio.tipus = 'millora'
       end
       operacio.save
