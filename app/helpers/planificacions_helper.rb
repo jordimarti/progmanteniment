@@ -9,10 +9,18 @@ module PlanificacionsHelper
     puts "Tresoreria mes anterior: #{tresoreria_anterior.import}, data_any: #{tresoreria_anterior.data_any}, data_mes: #{tresoreria_anterior.data_mes}"
     
     # Comprovem si en el mes i any que estem hi ha despesa
-    despesa = Despesa.where(edifici_id: @edifici.id, data_mes: mes, data_any: any).last
+    despeses = Despesa.where(edifici_id: @edifici.id, data_mes: mes, data_any: any)
     ingres = Ingres.where(edifici_id: @edifici.id, data_mes: mes, data_any: any).last
-    if despesa != nil
-      import_tresoreria = tresoreria_anterior.import + ingres.import - despesa.import
+    if despeses.count > 1
+      suma_despeses = 0
+      despeses.each do |despesa|
+        suma_despeses += despesa.import
+      end
+      despesa_calculada = suma_despeses
+      import_tresoreria = tresoreria_anterior.import + ingres.import - despesa_calculada
+    elsif despeses.count == 1
+      despesa_calculada = despeses.first.import
+      import_tresoreria = tresoreria_anterior.import + ingres.import - despesa_calculada
     else
       import_tresoreria = tresoreria_anterior.import + ingres.import
     end
@@ -39,6 +47,5 @@ module PlanificacionsHelper
       end
     end
   end
-
 
 end

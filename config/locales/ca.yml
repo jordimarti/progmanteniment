@@ -209,7 +209,7 @@ ca:
     update:
       guardat_ok: "Les dades s'han guardat correctament"
     calendari:
-      reinicialitzar: "Reinicialitzar"
+      reinicialitzar: "Tornar a calcular els ingressos"
   despeses:
     form:
       guardar: "Guardar"
