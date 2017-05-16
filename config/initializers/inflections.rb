@@ -22,4 +22,6 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'ingres', 'ingressos'
   inflect.irregular 'tresoreria', 'tresoreries'
   inflect.irregular 'millora', 'millores'
+  inflect.irregular 'actuacio', 'actuacions'
+  inflect.irregular 'referencia', 'referencies'
 end
