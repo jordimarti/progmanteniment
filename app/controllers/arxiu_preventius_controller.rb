@@ -43,6 +43,9 @@ class ArxiuPreventiusController < ApplicationController
           operacio.sistema = 'terrats'
         end
       end
+      operacio.data_inici_any = Time.now.year + 1
+      operacio.data_inici_mes = 1
+      operacio.durada_mesos = 1
       operacio.save
     end
   end

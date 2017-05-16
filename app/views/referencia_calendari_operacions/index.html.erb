@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Referencia Calendari Operacions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Edifici</th>
+      <th>Operacio</th>
+      <th>Descripcio</th>
+      <th>Sistema</th>
+      <th>Data any</th>
+      <th>Data mes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @referencia_calendari_operacions.each do |referencia_calendari_operacio| %>
+      <tr>
+        <td><%= referencia_calendari_operacio.edifici_id %></td>
+        <td><%= referencia_calendari_operacio.operacio_id %></td>
+        <td><%= referencia_calendari_operacio.descripcio %></td>
+        <td><%= referencia_calendari_operacio.sistema %></td>
+        <td><%= referencia_calendari_operacio.data_any %></td>
+        <td><%= referencia_calendari_operacio.data_mes %></td>
+        <td><%= link_to 'Show', referencia_calendari_operacio %></td>
+        <td><%= link_to 'Edit', edit_referencia_calendari_operacio_path(referencia_calendari_operacio) %></td>
+        <td><%= link_to 'Destroy', referencia_calendari_operacio, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Referencia Calendari Operacio', new_referencia_calendari_operacio_path %>

@@ -105,7 +105,8 @@ ca:
       titol_actuacions: "Actuacions"
       llistat: "Llistat d'actuacions"
       importacio: "Importació d'arxius XML"
-      calendari_preventiu: "Calendari de manteniment preventiu"
+      calendari_preventiu: "Calendari resum"
+      calendari_actuacions: "Calendari d'actuacions"
     llistat_operacions:
       descripcio: "Descripció"
       tipus: "Tipus d'actuació"
@@ -179,6 +180,19 @@ ca:
       titol_fases: "Assignació d'actuacions a la fase: "
       descripcio: "Descripció"
       import_total: "Import"
+    actuacions_anys:
+      gener: "G"
+      febrer: "F"
+      març: "M"
+      abril: "A"
+      maig: "M"
+      juny: "J"
+      juliol: "J"
+      agost: "A"
+      setembre: "S"
+      octubre: "O"
+      novembre: "N"
+      desembre: "D"
   fases:
     index:
       titol_fases: "Fases d'intervenció"

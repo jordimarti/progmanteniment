@@ -16,6 +16,9 @@ class CreateOperacions < ActiveRecord::Migration[5.0]
       t.integer :import_altres, default: 0
       t.integer :import_total, default: 0
       t.string :responsable
+      t.integer :data_inici_any
+      t.integer :data_inici_mes
+      t.integer :durada_mesos
 
       t.timestamps
     end

@@ -1,0 +1,1 @@
+json.partial! "referencia_calendari_operacions/referencia_calendari_operacio", referencia_calendari_operacio: @referencia_calendari_operacio

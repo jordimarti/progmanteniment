@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Edifici:</strong>
+  <%= @referencia_calendari_operacio.edifici_id %>
+</p>
+
+<p>
+  <strong>Operacio:</strong>
+  <%= @referencia_calendari_operacio.operacio_id %>
+</p>
+
+<p>
+  <strong>Descripcio:</strong>
+  <%= @referencia_calendari_operacio.descripcio %>
+</p>
+
+<p>
+  <strong>Sistema:</strong>
+  <%= @referencia_calendari_operacio.sistema %>
+</p>
+
+<p>
+  <strong>Data any:</strong>
+  <%= @referencia_calendari_operacio.data_any %>
+</p>
+
+<p>
+  <strong>Data mes:</strong>
+  <%= @referencia_calendari_operacio.data_mes %>
+</p>
+
+<%= link_to 'Edit', edit_referencia_calendari_operacio_path(@referencia_calendari_operacio) %> |
+<%= link_to 'Back', referencia_calendari_operacions_path %>

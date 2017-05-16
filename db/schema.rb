@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170407160850) do
+ActiveRecord::Schema.define(version: 20170516094755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,6 +152,9 @@ ActiveRecord::Schema.define(version: 20170407160850) do
     t.integer  "import_altres",        default: 0
     t.integer  "import_total",         default: 0
     t.string   "responsable"
+    t.integer  "data_inici_any"
+    t.integer  "data_inici_mes"
+    t.integer  "durada_mesos"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
   end
@@ -183,6 +186,17 @@ ActiveRecord::Schema.define(version: 20170407160850) do
     t.string   "sistema"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+  end
+
+  create_table "referencia_calendari_operacions", force: :cascade do |t|
+    t.integer  "edifici_id"
+    t.integer  "operacio_id"
+    t.text     "descripcio"
+    t.string   "sistema"
+    t.integer  "data_any"
+    t.integer  "data_mes"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "referencia_calendari_preventius", force: :cascade do |t|

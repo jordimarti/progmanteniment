@@ -1,7 +1,7 @@
 class OperacionsController < ApplicationController
   include CheckUser
   before_action :set_operacio, only: [:show, :edit, :update, :destroy]
-  before_action :set_edifici, only: [:index, :import, :assignacions, :calendari_preventiu, :crear_calendari_preventiu]
+  before_action :set_edifici, only: [:index, :import, :assignacions, :calendari_preventiu, :crear_calendari_preventiu, :calendari_actuacions]
   respond_to :html, :js
 
   def index
@@ -60,7 +60,7 @@ class OperacionsController < ApplicationController
     @submenu_actiu = 'operacions'
     @operacions_menu_actiu = 'calendari_preventiu'
     # Primer esborrem les referències existents
-    referencies_calendari = ReferenciaCalendariPreventiu.where(:edifici_id => @edifici.id)
+    referencies_calendari = ReferenciaCalendariPreventiu.where(edifici_id: @edifici.id)
     referencies_calendari.each do |ref_cal|
       ref_cal.destroy
     end
@@ -82,7 +82,7 @@ class OperacionsController < ApplicationController
     referencies.each do |referencia|
       operacio = Operacio.find(referencia.id)
       if operacio.periodicitat != nil && operacio.periodicitat >= 1.0
-        any = any_inici
+        any = referencia.data_inici_any
         while any < any_fi do
           referencia_calendari = ReferenciaCalendariPreventiu.new
           referencia_calendari.edifici_id = @edifici.id
@@ -106,6 +106,65 @@ class OperacionsController < ApplicationController
     end
   end
 
+  def calendari_actuacions
+    @subnavigation = true
+    @submenu_actiu = 'operacions'
+    @operacions_menu_actiu = 'calendari_actuacions'
+    destruir_calendari_actuacions
+    crear_calendari_actuacions
+    @operacions = Operacio.where(edifici_id: @edifici.id)
+    @referencies = ReferenciaCalendariOperacio.where(edifici_id: @edifici.id)
+    #@identificadors_operacions = ReferenciaCalendariOperacio.distinct.pluck(:operacio_id)
+  end
+
+  def destruir_calendari_actuacions
+    referencies_antigues = ReferenciaCalendariOperacio.where(edifici_id: @edifici.id)
+    referencies_antigues.each do |ref_cal|
+      ref_cal.destroy
+    end
+  end
+
+  def crear_calendari_actuacions
+    operacions = Operacio.where(edifici_id: @edifici.id)
+    any_inici = Time.now.year
+    any_fi = any_inici + 11
+    operacions.each do |operacio|
+      if operacio.tipus == 'preventiu'
+        any = operacio.data_inici_any
+        while any < any_fi do
+          referencia = ReferenciaCalendariOperacio.new
+          referencia.edifici_id = @edifici.id
+          referencia.operacio_id = operacio.id
+          referencia.descripcio = operacio.descripcio_ca
+          referencia.sistema = operacio.sistema
+          referencia.data_any = any
+          referencia.data_mes = operacio.data_inici_mes
+          referencia.save
+          any += operacio.periodicitat
+        end
+      else
+        data_inici_any = operacio.data_inici_any
+        data_inici_mes = operacio.data_inici_mes
+        operacio.durada_mesos.times do
+          referencia = ReferenciaCalendariOperacio.new
+          referencia.edifici_id = @edifici.id
+          referencia.operacio_id = operacio.id
+          referencia.descripcio = operacio.descripcio_ca
+          referencia.sistema = operacio.sistema
+          referencia.data_any = data_inici_any
+          referencia.data_mes = data_inici_mes
+          data_inici_mes = operacio.data_inici_mes + 1
+          # Comprovem si la data canvia d'any, el mes és 13, això vol dir que el mes ha de ser 1 i l'any +1
+          if data_inici_mes > 12
+            data_inici_any = operacio.data_inici_any + 1
+            data_inici_mes = 1
+          end
+          referencia.save
+        end
+      end
+    end
+  end
+
 
   private
     def set_operacio
@@ -117,6 +176,6 @@ class OperacionsController < ApplicationController
     end
 
     def operacio_params
-      params.require(:operacio).permit(:edifici_id, :fase_id, :descripcio_ca, :descripcio_es, :periodicitat, :periodicitat_text_ca, :periodicitat_text_es, :tipus, :sistema, :import_obres, :import_honoraris, :import_taxes, :import_altres, :import_total, :responsable)
+      params.require(:operacio).permit(:edifici_id, :fase_id, :descripcio_ca, :descripcio_es, :periodicitat, :periodicitat_text_ca, :periodicitat_text_es, :tipus, :sistema, :import_obres, :import_honoraris, :import_taxes, :import_altres, :import_total, :responsable, :data_inici_any, :data_inici_mes, :durada_mesos)
     end
 end

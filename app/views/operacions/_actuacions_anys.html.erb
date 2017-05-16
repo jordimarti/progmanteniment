@@ -1,0 +1,45 @@
+<% mes_actual = Date.today.month %>
+<% primer_any = Date.today.year %>
+<% ultim_any = Date.today.year + 10 %>
+
+<% for i in primer_any..ultim_any %>
+	<% seleccio_operacions = @referencies.where(data_any: i) %>
+	<% if seleccio_operacions.count > 0 %>
+		<table class="actuacions_anys">
+		  <thead>
+		    <tr>
+		      <th><%= i %></th>
+		      <th><%= t('.gener') %></th>
+		      <th><%= t('.febrer') %></th>
+		      <th><%= t('.març') %></th>
+		      <th><%= t('.abril') %></th>
+		      <th><%= t('.maig') %></th>
+		      <th><%= t('.juny') %></th>
+		      <th><%= t('.juliol') %></th>
+		      <th><%= t('.agost') %></th>
+		      <th><%= t('.setembre') %></th>
+		      <th><%= t('.octubre') %></th>
+		      <th><%= t('.novembre') %></th>
+		      <th><%= t('.desembre') %></th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    
+		    <% seleccio_operacions.distinct.pluck(:operacio_id).each do |num_operacio| %>
+		    	<% operacio_seleccionada = seleccio_operacions.find_by(operacio_id: num_operacio) %>
+		    	<tr>
+		    		<td><%= operacio_seleccionada.descripcio %></td>
+						<% for j in 1..12 %>
+							<% operacio_mes = seleccio_operacions.where(operacio_id: num_operacio, data_mes: j).last %>
+							<% if operacio_mes != nil %>
+								<td class="creu-calendari">x</td>
+							<% else %>
+								<td></td>
+							<% end %>
+						<% end %>
+					</tr>
+		    <% end %>
+	    </tbody>
+	  </table>
+	<% end %>
+<% end %>

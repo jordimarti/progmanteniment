@@ -1,0 +1,16 @@
+<%= simple_form_for(@referencia_calendari_operacio) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :edifici_id %>
+    <%= f.input :operacio_id %>
+    <%= f.input :descripcio %>
+    <%= f.input :sistema %>
+    <%= f.input :data_any %>
+    <%= f.input :data_mes %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
