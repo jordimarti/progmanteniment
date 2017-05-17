@@ -153,7 +153,7 @@ class OperacionsController < ApplicationController
           referencia.sistema = operacio.sistema
           referencia.data_any = data_inici_any
           referencia.data_mes = data_inici_mes
-          data_inici_mes = operacio.data_inici_mes + 1
+          data_inici_mes += 1
           # Comprovem si la data canvia d'any, el mes és 13, això vol dir que el mes ha de ser 1 i l'any +1
           if data_inici_mes > 12
             data_inici_any = operacio.data_inici_any + 1
