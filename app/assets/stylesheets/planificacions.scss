@@ -62,14 +62,18 @@ p.consell {
 	table.calendari-pdf {
 		border: 1px solid #ccc;
 		border-collapse: collapse;
+		font-size: 0.7em;
 	}
 
 	.calendari-header-cell {
+		padding: 0px 5px;
 		border: 1px solid #ccc;
 	}
 
 	.calendari-body-cell {
+		padding: 0px 5px;
 		border: 1px solid #ccc;
+		text-align: right;
 	}
 
 

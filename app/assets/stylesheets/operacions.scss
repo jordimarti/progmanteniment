@@ -51,7 +51,9 @@ td.creu-calendari {
 	font-size: 1.3em;
 }
 
-
+th.descripcio-actuacio {
+	width: 60%;
+}
 
 
 /* PDF ****************/
@@ -76,6 +78,10 @@ td.creu-calendari {
 	.body-cell {
 		padding: 0px;
 		border: 1px solid #ccc;
+	}
+
+	tr {
+		page-break-inside: avoid;
 	}
 
 	.titol-cell {
@@ -128,6 +134,7 @@ td.creu-calendari {
 		border-bottom: 1px solid #CCCCCC;
 		width: 100%;
 		margin-bottom: 0px;
+		font-size: 0.6em;
 	}
 
 	td.dades-cell {
@@ -138,7 +145,8 @@ td.creu-calendari {
 		border: none;
 		border-bottom: 1px solid #333333;
 		width: 100%;
-		margin-bottom: 50px;
+		font-size: 0.6em;
+		margin-bottom: 25px;
 	}
 
 	.titol-taula {
@@ -148,6 +156,25 @@ td.creu-calendari {
 
 	.taula-dos-columnes {
 		width: 50%;
+	}
+
+	table.actuacions-anys {
+		font-size: 0.6em;
+		border: 1px solid #ccc;
+		border-collapse: collapse;
+	}
+
+	table.actuacions-anys > thead > tr > th {
+		padding: 0px;
+	}
+
+	table.actuacions-anys > tbody > tr > td {
+		padding: 0px;
+		background-color: red;
+	}
+
+	table.actuacions-anys > tbody > tr {
+		page-break-inside: avoid;
 	}
 
 /* FINAL PDF **************/

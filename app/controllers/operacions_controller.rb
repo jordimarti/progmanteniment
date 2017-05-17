@@ -112,7 +112,7 @@ class OperacionsController < ApplicationController
     @operacions_menu_actiu = 'calendari_actuacions'
     destruir_calendari_actuacions
     crear_calendari_actuacions
-    @operacions = Operacio.where(edifici_id: @edifici.id)
+    #@operacions = Operacio.where(edifici_id: @edifici.id)
     @referencies = ReferenciaCalendariOperacio.where(edifici_id: @edifici.id)
     #@identificadors_operacions = ReferenciaCalendariOperacio.distinct.pluck(:operacio_id)
   end
