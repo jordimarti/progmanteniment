@@ -29,6 +29,7 @@ class PlanificacionsController < ApplicationController
     @planificacio_menu_actiu = 'planificacio_fases'
     check_user_edifici(@edifici.id)
     @fases = Fase.where(edifici_id: @edifici.id)
+    crea_despeses
     @despeses = Despesa.where(edifici_id: @edifici.id)
   end
 
@@ -46,6 +47,41 @@ class PlanificacionsController < ApplicationController
     helpers.actualitza_flux_tresoreria
   end
 
+  def crea_despeses
+    puts "Crea despeses --------------------------------"
+    despeses = Despesa.where(edifici_id: @edifici.id)
+    if despeses.count == 0
+      @edifici.operacions.each do |operacio|
+        if operacio.tipus != 'preventiu'
+          # Determinem el número de despeses en funció del número de mesos de durada de la intervenció
+          count_mes_despesa = 0
+          count_any_despesa = 0
+          operacio.durada_mesos.times do
+            despesa = Despesa.new
+            despesa.edifici_id = @edifici.id
+            despesa.fase_id = operacio.fase_id
+            despesa.concepte = operacio.descripcio_ca
+            import_total = operacio.import_obres.to_i + operacio.import_honoraris.to_i + operacio.import_taxes.to_i + operacio.import_altres.to_i
+            despesa.import = import_total / operacio.durada_mesos
+            # Comprovem si salta d'any
+            calcul_mes = operacio.data_inici_mes + count_mes_despesa - 12
+            if calcul_mes > 0
+              any_despesa = operacio.data_inici_any + 1
+              mes_despesa = calcul_mes
+            else
+              mes_despesa = operacio.data_inici_mes + count_mes_despesa
+              any_despesa = operacio.data_inici_any + count_any_despesa
+            end
+            despesa.data_mes = mes_despesa
+            count_mes_despesa += 1
+            despesa.data_any = any_despesa
+            despesa.save
+          end
+        end
+      end
+    end
+  end
+
   def crea_valors_inicials
     puts "Ha entrat a creació de valors inicials"
     Ingres.where(edifici_id: @edifici.id).destroy_all
@@ -56,11 +92,13 @@ class PlanificacionsController < ApplicationController
   end
 
   def crea_ingressos
-    despeses = Despesa.where(edifici_id: @edifici.id).order(:data_any)
+    despeses = Despesa.where(edifici_id: @edifici.id).order(:data_any, :data_mes)
     primer_any = Date.today.year
     ultim_any = despeses.last.data_any
     primer_mes = Date.today.month
     ultim_mes = despeses.last.data_mes
+    puts 'Ultim mes:'
+    puts ultim_mes
     for i in primer_any..ultim_any
       for j in 1..12
         if i == primer_any && j <= primer_mes
@@ -96,6 +134,7 @@ class PlanificacionsController < ApplicationController
 
   def actualitza_ingressos
     tresoreries = Tresoreria.where(edifici_id: @edifici.id).order(:data_any, :data_mes)
+    #despeses = Despesa.where(edifici_id: @edifici.id).order(:data_any, :data_mes)
     ingressos = Ingres.where(edifici_id: @edifici.id).order(:data_any, :data_mes)
     import_ultima_tresoreria = @edifici.planificacio.fons_propis
     data_inici_any = Date.today.year
