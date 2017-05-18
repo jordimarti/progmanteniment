@@ -32,7 +32,7 @@ ca:
       account_configuration: "Configuració del compte"
       sign_out: "Tancar sessió"
       tutorials: "Tutorials"
-      projectes: "Projectes"
+      projectes: "Programes"
     subnavigation:
       identificacio: "Identificació"
       actuacions: "Actuacions"
@@ -47,12 +47,15 @@ ca:
       text_permisos: "No teniu els permisos necessaris per accedir a aquesta pàgina."
   edificis:
     index:
-      titol: "Projectes"
-      nou_edifici: "Crear un nou edifici"
-      no_projectes: "Encara no has creat cap projecte."
+      titol: "Programes"
+      nou_edifici: "Crear un nou programa"
+      no_projectes: "Encara no has creat cap programa."
     new:
-      titol: "Crear un nou projecte"
-      tornar_projectes: "Tornar al llistat de projectes"
+      titol: "Crear un nou programa"
+      tornar_projectes: "Tornar al llistat de programes"
+    edit:
+      titol: "Canviar el nom del programa"
+      tornar_projectes: "Tornar al llistat de programes"
     form:
       guardar: "Guardar"
     pdf:
