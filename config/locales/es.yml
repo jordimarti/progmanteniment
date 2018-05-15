@@ -43,6 +43,11 @@ es:
     permisos:
       titol: "Acceso denegado"
       text_permisos: "No tenéis los permisos necesarios para acceder a esta página."
+    index:
+      titol_programa_manteniment: "Programa de mantenimiento"
+      subtitol_programa_manteniment: "Herramienta para la redacción del programa de mantenimiento"
+      subtitol_programa_manteniment2: "a partir de las operaciones del plan de mantenimiento, el"
+      subtitol_programa_manteniment3: "programa de rehabilitación y el test energético."
   edificis:
     index:
       titol: "Proyectos"
