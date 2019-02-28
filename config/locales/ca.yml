@@ -35,9 +35,7 @@ ca:
       projectes: "Programes"
     subnavigation:
       identificacio: "Identificació"
-      actuacions: "Actuacions"
-      deficiencies: "Deficiències"
-      intervencions: "Intervencions"
+      actuacions: "Activitats"
       fases: "Fases"
       planificacio: "Planificació financera"
       documents: "Documents"
@@ -47,9 +45,9 @@ ca:
       text_permisos: "No teniu els permisos necessaris per accedir a aquesta pàgina."
     index:
       titol_programa_manteniment: "Programa de manteniment"
-      subtitol_programa_manteniment: "Eina de suport per a la redacció del programa de manteniment"
-      subtitol_programa_manteniment2: "a partir de les operacions del pla de manteniment, el programa"
-      subtitol_programa_manteniment3: "de rehabilitació i el test energètic."
+      subtitol_programa_manteniment: "Eina de suport per a la redacció del programa de manteniment,"
+      subtitol_programa_manteniment2: "registre de les operacions de manteniment preventiu i"
+      subtitol_programa_manteniment3: "les actuacions de rehabilitació i millora de l'edifici."
   edificis:
     index:
       titol: "Programes"
@@ -130,18 +128,18 @@ ca:
   operacions:
     index:
       guardar: "Guardar"
-      titol_llistat_actuacions: "Llistat d'actuacions"
-      afegir_actuacio: "Afegir actuació"
-      operacio: "Actuació"
+      titol_llistat_actuacions: "Llistat d'activitats"
+      afegir_actuacio: "Afegir activitat"
+      operacio: "Activitat"
     menu_operacions:
-      titol_actuacions: "Actuacions"
-      llistat: "Llistat d'actuacions"
+      titol_actuacions: "Activitats"
+      llistat: "Llistat d'activitats"
       importacio: "Importació d'arxius XML"
       calendari_preventiu: "Calendari resum"
-      calendari_actuacions: "Calendari d'actuacions"
+      calendari_actuacions: "Calendari d'activitats"
     llistat_operacions:
       descripcio: "Descripció"
-      tipus: "Tipus d'actuació"
+      tipus: "Tipus d'activitat"
       periodicitat: "Periodicitat (en anys)"
       responsable: "Responsable"
     import:
@@ -209,7 +207,7 @@ ca:
       nove: "9è"
       dese: "10è"
     assignacions:
-      titol_fases: "Assignació d'actuacions a la fase: "
+      titol_fases: "Assignació d'activitats a la fase: "
       descripcio: "Descripció"
       import_total: "Import"
     actuacions_anys:
@@ -236,7 +234,7 @@ ca:
     form:
       guardar: "Guardar"
     llistat_fases:
-      assignar_operacions: "Assignar actuacions"
+      assignar_operacions: "Assignar activitats"
   planificacions:  
     menu_planificacio:
       titol_planificacio: "Planificació financera"
