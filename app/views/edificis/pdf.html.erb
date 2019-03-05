@@ -141,7 +141,7 @@
 		<h2 class="subtitol-document">LLISTAT D'ACTUACIONS DE MANTENIMENT PREVENTIU</h2>
 		<hr class="linia-sencera-pdf">
 		
-		<% operacions = edifici.operacions.where(tipus: 'preventiu') %>
+		<% operacions = edifici.operacions.where(tipus: 'preventiu', data_inici_any: Date.today.year) %>
 		<% operacions.each do |operacio| %>
 			<div class="taula-container">
 	      <table class="taula-dades">
@@ -154,7 +154,7 @@
 				<table class="taula-dades-final">
 					<tbody>
 				    <tr>
-				    	<td class="dades-cell"><span class="titol-taula">Periodicitat:</span><br/><%= operacio.periodicitat_text_ca %></td>
+				    	<td class="dades-cell dades-periodicitat"><span class="titol-taula">Periodicitat:</span><br/><%= operacio.periodicitat_text_ca %></td>
 				      <td class="dades-cell"><span class="titol-taula">Responsable:</span><br/><%= operacio.responsable %></td>
 				      <td class="dades-cell"><span class="titol-taula">Persona física o jurídica:</span><br/><%= operacio.persona %></td>
 				      <td class="dades-cell"><span class="titol-taula">Import:</span><br/><%= operacio.import_total %> €</td>
@@ -174,7 +174,7 @@
 		<h2 class="subtitol-document">LLISTAT D'ACTUACIONS DE MANTENIMENT CORRECTIU</h2>
 		<hr class="linia-sencera-pdf">
 		
-		<% operacions = edifici.operacions.where(tipus: 'correctiu') %>
+		<% operacions = edifici.operacions.where(tipus: 'correctiu', data_inici_any: Date.today.year) %>
 		<% operacions.each do |operacio| %>
 			<div class="taula-container">
 	      <table class="taula-dades">
@@ -206,7 +206,7 @@
 		<h2 class="subtitol-document">LLISTAT D'ACTUACIONS DE MILLORA</h2>
 		<hr class="linia-sencera-pdf">
 		
-		<% operacions = edifici.operacions.where(tipus: 'millora') %>
+		<% operacions = edifici.operacions.where(tipus: 'millora', data_inici_any: Date.today.year) %>
 		<% operacions.each do |operacio| %>
 			<div class="taula-container">
 	      <table class="taula-dades">
