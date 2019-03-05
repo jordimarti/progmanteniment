@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :referencia_calendari_preventius
   resources :despeses
   get 'documents/index'
-
+  get 'edificis/vista_pdf'
 
   get 'operacions/import'
   get 'operacions/calendari_preventiu'
@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     resource :download_resum, only: [:show]
     resource :download_registre, only: [:show]
   end
+
   devise_for :users
   get 'pagaments/cambra_projects'
   get 'home/index'
