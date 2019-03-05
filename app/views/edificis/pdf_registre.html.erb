@@ -1,5 +1,316 @@
 <div class="row">
 	<div class="medium-12 columns">
-		<h1 class="titol-document">REGISTRE DEL PROGRAMA DE MANTENIMENT</h1>
+		<h1 class="titol-document">REGISTRE DEL PROGRAMA DE MANTENIMENT <%= Date.today.year %></h1>
+	</div>
+</div>
+
+<div class="row">
+	<div class="medium-12 columns">
+		
+		<% if edifici.identificacio.bloc.blank?
+		    adreca = edifici.identificacio.tipus_via.to_s + ' ' + edifici.identificacio.nom_via.to_s + ' ' + edifici.identificacio.numero_via.to_s
+		  else
+		    adreca = edifici.identificacio.tipus_via.to_s + ' ' + edifici.identificacio.nom_via.to_s + ' ' + edifici.identificacio.numero_via.to_s + ', bloc ' + edifici.identificacio.bloc.to_s
+		  end
+		%>
+
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+
+		<h5 class="titol-identificacio">Edifici</h5>
+		<hr class="linia-sencera-pdf">
+		<span class="label-identificacio">Adreça:</span> <%= adreca %>, <%= edifici.identificacio.codi_postal %>, <%= edifici.identificacio.poblacio %></span><br/>
+		<span class="label-identificacio">Règim jurídic:</span> <%= edifici.identificacio.regim_juridic %>
+
+		<div class="spacer"></div>
+
+		<% if edifici.identificacio.regim_juridic == 'Propietat horitzontal' %>
+			<h5 class="titol-identificacio">President/a de la comunitat</h5>
+		<% else %>
+			<h5 class="titol-identificacio">Propietari/a</h5>
+		<% end %>
+		<hr class="linia-sencera-pdf">
+		<p>
+			<span class="label-identificacio">Nom i cognoms:</span> <%= edifici.identificacio.nom_propietat %> <%= edifici.identificacio.cognoms_propietat %><br/>
+		  <span class="label-identificacio"><%= edifici.identificacio.tipus_identificacio_propietat %>:</span> <%= edifici.identificacio.identificacio_propietat %><br/>
+		  <span class="label-identificacio">Adreça:</span> <%= edifici.identificacio.tipus_via_propietat %> <%= edifici.identificacio.adreca_propietat %>, <%= edifici.identificacio.codi_postal_propietat %>, <%= edifici.identificacio.poblacio_propietat %><br/>
+		  <span class="label-identificacio">Telèfon:</span> <%= edifici.identificacio.telefon_propietat %><br/>
+		  <span class="label-identificacio">Correu electrònic:</span> <%= edifici.identificacio.email_propietat %>
+		</p>
+
+		<div class="spacer"></div>
+
+		<% if edifici.identificacio.nom_representant != "" %>
+			<h5 class="titol-identificacio">Representant</h5>
+			<hr class="linia-sencera-pdf">
+			<p>
+				<span class="label-identificacio">Nom i cognoms:</span> <%= edifici.identificacio.nom_representant %> <%= edifici.identificacio.cognoms_representant %><br/>
+			  <span class="label-identificacio"><%= edifici.identificacio.tipus_identificacio_representant %>:</span> <%= edifici.identificacio.identificacio_representant %><br/>
+			  <span class="label-identificacio">Adreça:</span> <%= edifici.identificacio.tipus_via_representant %> <%= edifici.identificacio.adreca_representant %>, <%= edifici.identificacio.codi_postal_representant %>, <%= edifici.identificacio.poblacio_representant %><br/>
+			  <span class="label-identificacio">Telèfon:</span> <%= edifici.identificacio.telefon_representant %><br/>
+			  <span class="label-identificacio">Correu electrònic:</span> <%= edifici.identificacio.email_representant %>
+			</p>
+		<% end %>
+
+		<div class="spacer"></div>
+
+		<h5 class="titol-identificacio">Tècnic redactor</h5>
+		<hr class="linia-sencera-pdf">
+		<p>
+			<span class="label-identificacio">Nom i cognoms:</span> <%= edifici.identificacio.nom_tecnic %> <%= edifici.identificacio.cognoms_tecnic %><br/>
+		  <span class="label-identificacio"><%= edifici.identificacio.tipus_identificacio_tecnic %>:</span> <%= edifici.identificacio.identificacio_tecnic %><br/>
+		  <span class="label-identificacio">Titulació:</span> <%= edifici.identificacio.titulacio_tecnic %><br/>
+		  <span class="label-identificacio">Col·legi professional:</span> <%= edifici.identificacio.colegi_tecnic %><br/>
+		  <span class="label-identificacio">Número de col·legiat:</span> <%= edifici.identificacio.num_colegiat_tecnic %><br/>
+		  <span class="label-identificacio">Adreça:</span> <%= edifici.identificacio.tipus_via_tecnic %> <%= edifici.identificacio.adreca_tecnic %>, <%= edifici.identificacio.codi_postal_tecnic %>, <%= edifici.identificacio.poblacio_tecnic %><br/>
+		  <span class="label-identificacio">Telèfon:</span> <%= edifici.identificacio.telefon_tecnic %><br/>
+		  <span class="label-identificacio">Correu electrònic:</span> <%= edifici.identificacio.email_tecnic %>
+		</p>
+	</div>
+</div>
+
+<div class="salt-pagina"></div>
+
+<h2 class="subtitol-document">CALENDARI D'ACTUACIONS</h2>
+<hr class="linia-sencera-pdf">
+
+<div class="spacer"></div>
+<div class="spacer"></div>
+
+<% mes_actual = Date.today.month %>
+<% primer_any = Date.today.year %>
+<% ultim_any = Date.today.year + 10 %>
+<% referencies = ReferenciaCalendariOperacio.where(edifici_id: edifici.id) %>
+
+
+	<% seleccio_operacions = referencies.where(data_any: Date.today.year) %>
+	<% if seleccio_operacions.count > 0 %>
+		<table class="actuacions-anys unstriped">
+		  <thead>
+		    <tr>
+		      <th class="header-cell descripcio-actuacio titol-cell"><%= Date.today.year %></th>
+		      <th class="header-cell"><%= t('.gener') %></th>
+		      <th class="header-cell"><%= t('.febrer') %></th>
+		      <th class="header-cell"><%= t('.març') %></th>
+		      <th class="header-cell"><%= t('.abril') %></th>
+		      <th class="header-cell"><%= t('.maig') %></th>
+		      <th class="header-cell"><%= t('.juny') %></th>
+		      <th class="header-cell"><%= t('.juliol') %></th>
+		      <th class="header-cell"><%= t('.agost') %></th>
+		      <th class="header-cell"><%= t('.setembre') %></th>
+		      <th class="header-cell"><%= t('.octubre') %></th>
+		      <th class="header-cell"><%= t('.novembre') %></th>
+		      <th class="header-cell"><%= t('.desembre') %></th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    
+		    <% seleccio_operacions.distinct.pluck(:operacio_id).each do |num_operacio| %>
+		    	<% operacio_seleccionada = seleccio_operacions.find_by(operacio_id: num_operacio) %>
+		    	<tr>
+		    		<td class="body-cell titol-cell"><%= operacio_seleccionada.descripcio %></td>
+						<% for j in 1..12 %>
+							<% operacio_mes = seleccio_operacions.where(operacio_id: num_operacio, data_mes: j).last %>
+							<% if operacio_mes != nil %>
+								<td class="body-cell creu-calendari">x</td>
+							<% else %>
+								<td class="body-cell"></td>
+							<% end %>
+						<% end %>
+					</tr>
+		    <% end %>
+	    </tbody>
+	  </table>
+	  
+	<% end %>
+
+<div class="salt-pagina"></div>
+
+
+
+
+
+
+
+<div class="row">
+	<div class="medium-12 columns">
+		<h2 class="subtitol-document">LLISTAT D'ACTUACIONS DE MANTENIMENT PREVENTIU</h2>
+		<hr class="linia-sencera-pdf">
+		
+		<% operacions = edifici.operacions.where(tipus: 'preventiu', data_inici_any: Date.today.year) %>
+		<% operacions.each do |operacio| %>
+			<div class="taula-container">
+	      <table class="taula-dades">
+				  <tbody>
+				    <tr>
+				      <td class="dades-cell"><span class="titol-taula">Descripció:</span><br/> <%= operacio.descripcio_ca %></td>
+				    </tr>
+				  </tbody>
+				</table>
+				<table class="taula-dades-final">
+					<tbody>
+				    <tr>
+				    	<td class="dades-cell dades-data"><span class="titol-taula">Data:</span><br/>-</td>
+				      <td class="dades-cell dades-realitzatper"><span class="titol-taula">Realitzat per:</span><br/>-</td>
+				      <td class="dades-cell dades-signatura"><span class="titol-taula">Signatura</span><br/>-</td>
+				    </tr>
+				  </tbody>
+				</table>
+      </div>		
+		<% end %>
+		
+	</div>
+</div>
+
+<div class="salt-pagina"></div>
+
+<div class="row">
+	<div class="medium-12 columns">
+		<h2 class="subtitol-document">LLISTAT D'ACTUACIONS DE MANTENIMENT CORRECTIU</h2>
+		<hr class="linia-sencera-pdf">
+		
+		<% operacions = edifici.operacions.where(tipus: 'correctiu', data_inici_any: Date.today.year) %>
+		<% operacions.each do |operacio| %>
+			<div class="taula-container">
+	      <table class="taula-dades">
+				  <tbody>
+				    <tr>
+				      <td class="dades-cell"><span class="titol-taula">Descripció:</span><br/> <%= operacio.descripcio_ca %></td>
+				    </tr>
+				  </tbody>
+				</table>
+				<table class="taula-dades-final">
+					<tbody>
+				    <tr>
+				      <td class="dades-cell dades-data"><span class="titol-taula">Data:</span><br/>-</td>
+				      <td class="dades-cell dades-realitzatper"><span class="titol-taula">Realitzat per:</span><br/>-</td>
+				      <td class="dades-cell dades-signatura"><span class="titol-taula">Signatura</span><br/>-</td>
+				    </tr>
+				  </tbody>
+				</table>
+      </div>		
+		<% end %>
+		
+	</div>
+</div>
+
+<div class="salt-pagina"></div>
+
+<div class="row">
+	<div class="medium-12 columns">
+		<h2 class="subtitol-document">LLISTAT D'ACTUACIONS DE MILLORA</h2>
+		<hr class="linia-sencera-pdf">
+		
+		<% operacions = edifici.operacions.where(tipus: 'millora', data_inici_any: Date.today.year) %>
+		<% operacions.each do |operacio| %>
+			<div class="taula-container">
+	      <table class="taula-dades">
+				  <tbody>
+				    <tr>
+				      <td class="dades-cell"><span class="titol-taula">Descripció:</span><br/> <%= operacio.descripcio_ca %></td>
+				    </tr>
+				  </tbody>
+				</table>
+				<table class="taula-dades-final">
+					<tbody>
+				    <tr>
+				      <td class="dades-cell dades-data"><span class="titol-taula">Data:</span><br/>-</td>
+				      <td class="dades-cell dades-realitzatper"><span class="titol-taula">Realitzat per:</span><br/>-</td>
+				      <td class="dades-cell dades-signatura"><span class="titol-taula">Signatura</span><br/>-</td>
+				    </tr>
+				  </tbody>
+				</table>
+      </div>		
+		<% end %>
+		
+	</div>
+</div>
+
+<div class="salt-pagina"></div>
+
+<div class="row">
+	<div class="medium-12 columns">
+		<h2 class="subtitol-document">PLANIFICACIÓ FINANCERA</h2>
+		<hr class="linia-sencera-pdf">
+		<% mes_actual = Date.today.month %>
+<% tresoreria = edifici.planificacio.fons_propis %>
+<% primer_any = Date.today.year %>
+<% ultim_any = edifici.despeses.order(:data_any).last.data_any %>
+<% 
+	for i in primer_any..ultim_any %>
+	<table class="calendari calendari-pdf unstriped">
+	  <thead>
+	    <tr>
+	      <th class="calendari-header-cell"><%= i %></th>
+	      <th class="calendari-header-cell"><%= t('.plan-gener') %></th>
+	      <th class="calendari-header-cell"><%= t('.plan-febrer') %></th>
+	      <th class="calendari-header-cell"><%= t('.plan-marc') %></th>
+	      <th class="calendari-header-cell"><%= t('.plan-abril') %></th>
+	      <th class="calendari-header-cell"><%= t('.plan-maig') %></th>
+	      <th class="calendari-header-cell"><%= t('.plan-juny') %></th>
+	      <th class="calendari-header-cell"><%= t('.plan-juliol') %></th>
+	      <th class="calendari-header-cell"><%= t('.plan-agost') %></th>
+	      <th class="calendari-header-cell"><%= t('.plan-setembre') %></th>
+	      <th class="calendari-header-cell"><%= t('.plan-octubre') %></th>
+	      <th class="calendari-header-cell"><%= t('.plan-novembre') %></th>
+	      <th class="calendari-header-cell"><%= t('.plan-desembre') %></th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr>
+	      <th class="calendari-header-cell"><%= t('.ingressos') %></th>
+		    <% for j in 1..12 %>
+		    	<% ingres = edifici.ingressos.where(data_mes: j, data_any: i) %>
+		    	<% if ingres.exists? %>
+		    		<td class="calendari-body-cell">
+			    		
+				    		<%= ingres.last.import %>
+				  		
+			  		</td>
+		    	<% else %>
+		    		<td class="calendari-body-cell"></td>
+		    	<% end %>
+		    <% end %>
+    	</tr>
+    	<tr>
+    		<th class="calendari-header-cell"><%= t('.despeses') %></th>
+    		<% for j in 1..12 %>
+		      <% if i == primer_any && j < mes_actual - 1 %>
+		    		<td class="calendari-body-cell"></td>
+		    	<% elsif 
+			      mes_despesa = edifici.despeses.where(data_mes: j, data_any: i)
+			      if mes_despesa.exists? %>
+			        <td class="calendari-body-cell"><%= mes_despesa.last.import %></td>
+			      <% else %>
+			        <td class="calendari-body-cell"></td>
+			      <% end %>
+			    <% end %>
+		    <% end %>
+    	</tr>
+    	<tr>
+    		<th class="calendari-header-cell"><%= t('.tresoreria') %></th>
+    		<% for j in 1..12 %>
+	    		<% tresoreria = edifici.tresoreries.where(data_mes: j, data_any: i).last
+	    		if tresoreria != nil %>
+	    			<td class="calendari-body-cell">
+	    				<% if tresoreria.import < 0 %>
+	    					<span class="valor-negatiu"><%= tresoreria.import %></span>
+	    				<% else %>
+	    					<span class="valor-positiu"><%= tresoreria.import %></span>
+	    				<% end %>
+	    			</td>
+	    		<% else %>
+	    			<td class="calendari-body-cell"></td>
+	    		<% end %>
+		    <% end %>
+    	</tr>
+    </tbody>
+  </table>
+<% end %>
+
 	</div>
 </div>
