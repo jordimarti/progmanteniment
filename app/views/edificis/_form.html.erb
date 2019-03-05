@@ -5,6 +5,9 @@
     <%= f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id } %>
     <%= f.input :nom_edifici %>
     <%= f.input :ref_cadastral %>
+    <% if current_user.role == 'cambra' %>
+      <%= f.input :editor_nif %>
+    <% end %>
   </div>
 
   <div class="form-actions">

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :despeses
   get 'documents/index'
 
+
   get 'operacions/import'
   get 'operacions/calendari_preventiu'
   get 'operacions/calendari_actuacions'
@@ -27,8 +28,11 @@ Rails.application.routes.draw do
   resources :fases
   resources :edificis do
     resource :download, only: [:show]
+    resource :download_resum, only: [:show]
+    resource :download_registre, only: [:show]
   end
   devise_for :users
+  get 'pagaments/cambra_projects'
   get 'home/index'
   get 'home/contacta'
   get 'home/tutorial'

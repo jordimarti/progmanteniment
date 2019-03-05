@@ -4,6 +4,7 @@ class EdificisController < ApplicationController
 
   def index
     @edificis = Edifici.where(user_id: current_user.id).order(created_at: :desc)
+    @edificis_editor = Edifici.where(editor_nif: current_user.nif).order(created_at: :desc)
   end
 
   def new
@@ -15,6 +16,9 @@ class EdificisController < ApplicationController
 
   def create
     @edifici = Edifici.new(edifici_params)
+    if current_user.role = 'cambra'
+      @edifici.creador = 'cambra'
+    end
     if @edifici.save
       create_complements(@edifici.id)
       redirect_to edificis_path
@@ -68,6 +72,6 @@ class EdificisController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def edifici_params
-      params.require(:edifici).permit(:user_id, :nom_edifici, :ref_cadastral)
+      params.require(:edifici).permit(:user_id, :nom_edifici, :ref_cadastral, :creador, :editor_correu, :editor_nif)
     end
 end

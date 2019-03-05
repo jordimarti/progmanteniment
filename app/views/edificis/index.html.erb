@@ -62,6 +62,22 @@
                       <% end %>
                     </div>
                   <% end %>
+
+                  <% if @edificis_editor.count > 0 %>
+                    <h4>Cambra de la Propietat de Terrassa</h4>
+                    <% @edificis_editor.each do |edifici| %>
+                      <div class="item-llistat-edificis">
+                        <div class="imatge-item-llistat-edificis">
+                          <%= link_to image_tag(edifici.identificacio.foto_facana.url(:thumb)), edit_identificacio_path(edifici.identificacio.id) %> 
+                        </div>
+                        <div class="text-item-llistat-edificis">
+                          <%= link_to(edifici.nom_edifici, edit_identificacio_path(edifici.identificacio.id), :class => 'link-item-edifici') %>
+                          <br>
+                          <span class="data-llistat-edificis">(<%= edifici.created_at.day.to_s %>-<%= edifici.created_at.month.to_s %>-<%= edifici.created_at.year.to_s %>)</span>
+                        </div>
+                      </div>
+                    <% end %>
+                  <% end %>
                 </div>
               </div>
             </div>

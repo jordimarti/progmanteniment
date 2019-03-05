@@ -29,6 +29,7 @@ ca:
       titol: "Programa de manteniment"
       register: "Registrar-se"
       sign_in: "Iniciar sessió"
+      cambra_projects: "Llibres Cambra"
       account_configuration: "Configuració del compte"
       sign_out: "Tancar sessió"
       tutorials: "Tutorials"
@@ -44,7 +45,8 @@ ca:
       titol: "Accés denegat"
       text_permisos: "No teniu els permisos necessaris per accedir a aquesta pàgina."
     index:
-      titol_programa_manteniment: "Programa de manteniment"
+      titol_programa_manteniment: "Programa i registre de"
+      titol_programa_manteniment2: "manteniment"
       subtitol_programa_manteniment: "Eina de suport per a la redacció del programa de manteniment,"
       subtitol_programa_manteniment2: "registre de les operacions de manteniment preventiu i"
       subtitol_programa_manteniment3: "les actuacions de rehabilitació i millora de l'edifici."
@@ -61,7 +63,7 @@ ca:
       tornar_projectes: "Tornar al llistat de programes"
     form:
       guardar: "Guardar"
-    pdf:
+    pdf_resum:
       sistema_constructiu: "Sistema constructiu"
       menys_un_any: "<1 any"
       primer: "1r"
@@ -231,6 +233,7 @@ ca:
     llistat_operacions:
       descripcio: "Descripció"
       import_total: "Import"
+      assignacio: "Assigna activitats a aquesta fase."
     form:
       guardar: "Guardar"
     llistat_fases:
@@ -277,11 +280,14 @@ ca:
     index:
       titol_document: "Documents"
       genera_programa: "Programa de manteniment"
+      genera_registre: "Registre de manteniment"
+      genera_resum: "Resum del programa"
   simple_form:
     labels:
       edifici:
         nom_edifici: "Nom de l'edifici"
         ref_cadastral: "Referència cadastral"
+        editor_nif: "NIF del tècnic"
       identificacio:
         tipus_via: "Tipus de via"
         nom_via: "Nom de la via"
@@ -332,7 +338,9 @@ ca:
         tipus: "Tipologia"
         sistema: "Sistema constructiu"
         responsable: "Responsable"
+        persona: "Persona física o jurídica"
         periodicitat: "Periodicitat (en anys)"
+        periodicitat_text_ca: "Periodicitat (text)"
         import_obres: "Import de les obres"
         import_honoraris: "Import dels honoraris"
         import_taxes: "Import de les taxes"

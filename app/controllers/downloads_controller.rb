@@ -28,4 +28,5 @@ class DownloadsController < ApplicationController
     edifici = Edifici.find(params[:edifici_id])
     render template: "edificis/pdf", layout: "pdf", locals: { edifici: edifici }
   end
+
 end

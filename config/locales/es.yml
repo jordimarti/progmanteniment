@@ -44,7 +44,8 @@ es:
       titol: "Acceso denegado"
       text_permisos: "No tenéis los permisos necesarios para acceder a esta página."
     index:
-      titol_programa_manteniment: "Programa de mantenimiento"
+      titol_programa_manteniment: "Programa y registro de"
+      titol_programa_manteniment2: "mantenimiento"
       subtitol_programa_manteniment: "Herramienta para la redacción del programa de mantenimiento,"
       subtitol_programa_manteniment2: "registro de las operaciones de mantenimiento preventivo y"
       subtitol_programa_manteniment3: "las actuaciones de rehabilitación y mejora del edificio."
@@ -56,6 +57,9 @@ es:
     new:
       titol: "Crear un nuevo proyecto"
       tornar_projectes: "Volver al listado de proyectos"
+    edit:
+      titol: "Cambiar el nombre del programa"
+      tornar_projectes: "Volver al listado de programas"
     form:
       guardar: "Guardar"
   identificacions:

@@ -23,6 +23,9 @@
         <li>
           <a href="#" class="sessionbar-link"><%= current_user.email %></a>
           <ul class="menu vertical">
+            <% if current_user.role == 'admin' %>
+              <li><%= link_to t('.cambra_projects'), pagaments_cambra_projects_path(any: Date.today.year), :class => 'sessionbar-link' %></li>
+            <% end %>
             <li><%= link_to t('.account_configuration'), edit_user_registration_path, :class => 'sessionbar-link' %></li>
             <li><%= link_to t('.sign_out'), destroy_user_session_path, method: :delete, :class => 'sessionbar-link' %></li>
           </ul>
