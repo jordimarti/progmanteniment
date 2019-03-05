@@ -1,3 +1,4 @@
+<% mesos = [nil, 'Gener', 'Febrer', 'Març', 'Abril', 'Maig', 'Juny', 'Juliol', 'Agost', 'Setembre', 'Octubre', 'Novembre', 'Desembre'] %>
 <div class="row">
 	<div class="medium-12 columns">
 		<h1 class="titol-document">PROGRAMA DE MANTENIMENT <%= Date.today.year %></h1>
@@ -154,7 +155,7 @@
 				<table class="taula-dades-final">
 					<tbody>
 				    <tr>
-				    	<td class="dades-cell dades-periodicitat"><span class="titol-taula">Data:</span><br/><%= operacio.data_inici_mes %> <%= operacio.data_inici_any %></td>
+				    	<td class="dades-cell dades-periodicitat"><span class="titol-taula">Data:</span><br/><%= mesos[operacio.data_inici_mes] %> <%= operacio.data_inici_any %></td>
 				      <td class="dades-cell dades-responsable"><span class="titol-taula">Responsable:</span><br/><%= operacio.responsable %></td>
 				      <td class="dades-cell dades-persona"><span class="titol-taula">Persona física o jurídica:</span><br/><%= operacio.persona %></td>
 				      <td class="dades-cell dades-import"><span class="titol-taula">Import:</span><br/><%= operacio.import_total %> €</td>
