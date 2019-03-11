@@ -335,7 +335,7 @@ ca:
       programa_rehabilitacio: "Programa de rehabilitació"
       importar_correctiu: "Manteniment correctiu."
       test_energetic: "Test energètic"
-      importar_millora: "Operacions de millora."
+      importar_millora: "Actuacions de millora."
     form:
       guardar: "Guardar"
       preventiu: "Preventiu"

@@ -4,8 +4,28 @@
 
   <div class="row">
     <div class="medium-12 columns">
+      <button id="request">- Generar calendari</button>
+    	<div id="status-calendari">
+
+    	</div>
   		<%= render 'actuacions_anys' %>
   	</div>
   </div>
 
 </div>
+
+<script>
+$('#request').on('click', function() {
+  $(this).hide();
+  var i = 2;
+	
+	  any = <%= Time.now.year %> + i;
+		$.get( "<%= operacions_generar_calendari_activitats_path %>", { edifici_id: <%= @edifici.id %>, any: 2021 } )
+	  .done(function( data ) {
+	    $('#status-calendari').append(data);
+	    $.get( "<%= operacions_generar_calendari_activitats_path %>", { edifici_id: <%= @edifici.id %>, any: 2022 } );
+	  });
+	
+});
+
+</script>

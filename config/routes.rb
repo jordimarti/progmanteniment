@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get 'operacions/import'
   get 'operacions/calendari_preventiu'
   get 'operacions/calendari_actuacions'
+  get 'operacions/destruir_calendari_activitats'
+  get 'operacions/generar_calendari_activitats'
   get 'planificacions/fases', to: 'planificacions#fases', :as => :fases_planificacio
   get 'planificacions/calendari', to: 'planificacions#calendari', :as => :calendari
   get 'planificacions/crea_valors_inicials', to: 'planificacions#crea_valors_inicials', :as => :crea_valors_inicials

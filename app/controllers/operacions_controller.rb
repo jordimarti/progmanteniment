@@ -1,5 +1,6 @@
 class OperacionsController < ApplicationController
   include CheckUser
+  layout "resposta_calendari", only: [:generar_calendari_activitats]
   before_action :set_operacio, only: [:show, :edit, :update, :destroy]
   before_action :set_edifici, only: [:index, :import, :assignacions, :calendari_preventiu, :crear_calendari_preventiu, :calendari_actuacions]
   respond_to :html, :js
@@ -110,15 +111,15 @@ class OperacionsController < ApplicationController
     @subnavigation = true
     @submenu_actiu = 'operacions'
     @operacions_menu_actiu = 'calendari_actuacions'
-    destruir_calendari_actuacions
-    crear_calendari_actuacions
-    #@operacions = Operacio.where(edifici_id: @edifici.id)
+    #destruir_calendari_actuacions
+    #crear_calendari_actuacions
+    
     @referencies = ReferenciaCalendariOperacio.where(edifici_id: @edifici.id)
-    #@identificadors_operacions = ReferenciaCalendariOperacio.distinct.pluck(:operacio_id)
+    
   end
 
-  def destruir_calendari_actuacions
-    referencies_antigues = ReferenciaCalendariOperacio.where(edifici_id: @edifici.id)
+  def destruir_calendari_activitats
+    referencies_antigues = ReferenciaCalendariOperacio.where(edifici_id: params[:edifici_id])
     referencies_antigues.each do |ref_cal|
       ref_cal.destroy
     end
@@ -163,6 +164,51 @@ class OperacionsController < ApplicationController
         end
       end
     end
+  end
+
+  def generar_calendari_activitats 
+    any = params[:any]
+    @edifici = Edifici.find(params[:edifici_id])
+    operacions = Operacio.where(edifici_id: @edifici.id, data_inici_any: any)
+    operacions.each do |operacio|
+      if operacio.tipus == 'preventiu'
+        any_operacio = any.to_i
+        any_fi = Time.now.year + 11
+        while any_operacio < any_fi do
+          referencia = ReferenciaCalendariOperacio.new
+          
+          referencia.edifici_id = @edifici.id
+          referencia.operacio_id = operacio.id
+          referencia.descripcio = operacio.descripcio_ca
+          referencia.sistema = operacio.sistema
+          referencia.data_any = any
+          referencia.data_mes = operacio.data_inici_mes
+          referencia.save
+          any_operacio += operacio.periodicitat
+        end
+      else
+        data_inici_any = operacio.data_inici_any
+        data_inici_mes = operacio.data_inici_mes
+        operacio.durada_mesos.times do
+          referencia = ReferenciaCalendariOperacio.new
+          referencia.edifici_id = @edifici.id
+          referencia.operacio_id = operacio.id
+          referencia.descripcio = operacio.descripcio_ca
+          referencia.sistema = operacio.sistema
+          referencia.data_any = data_inici_any
+          referencia.data_mes = data_inici_mes
+          data_inici_mes += 1
+          # Comprovem si la data canvia d'any, el mes és 13, això vol dir que el mes ha de ser 1 i l'any +1
+          if data_inici_mes > 12
+            data_inici_any = operacio.data_inici_any + 1
+            data_inici_mes = 1
+          end
+          referencia.save
+        end
+      end
+    end
+    @referencies = ReferenciaCalendariOperacio.where(edifici_id: @edifici.id, data_any: any)
+    @any_generat = any
   end
 
 
