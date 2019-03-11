@@ -4,7 +4,7 @@
 
   <div class="row">
     <div class="medium-12 columns">
-      <button id="request">- Generar calendari</button>
+      <button id="request" class="button">Actualitzar el calendari</button>
     	<div id="status-calendari">
 
     	</div>
@@ -17,15 +17,40 @@
 <script>
 $('#request').on('click', function() {
   $(this).hide();
-  var i = 2;
-	
-	  any = <%= Time.now.year %> + i;
-		$.get( "<%= operacions_generar_calendari_activitats_path %>", { edifici_id: <%= @edifici.id %>, any: 2021 } )
-	  .done(function( data ) {
-	    $('#status-calendari').append(data);
-	    $.get( "<%= operacions_generar_calendari_activitats_path %>", { edifici_id: <%= @edifici.id %>, any: 2022 } );
-	  });
-	
+  elimina_referencies();
 });
+
+function elimina_referencies() {
+  $('#status-calendari').html("<p>Eliminant activitats existents...</p>");
+  $.get( "<%= operacions_destruir_calendari_activitats_path %>", { edifici_id: <%= @edifici.id %> })
+  .done(function() {
+      $('#status-calendari').append("Operacions esborrades");
+      genera_referencies();
+  });
+}
+
+function genera_referencies() {
+  var any;
+  var any_final = <%= Time.now.year %> + 10;
+  var comptador = 0;
+  for (any = <%= Time.now.year %>; any < any_final; any++) { 
+    $.ajax({
+      type: 'GET',
+      url: '<%= operacions_generar_calendari_activitats_path %>',
+      data: {
+        edifici_id: <%= @edifici.id %>,
+        any: any,
+      },
+      success: function(data) {
+        $('#status-calendari').html(data);
+        comptador++;
+        if (comptador == 10) {
+          $('#status-calendari').html("<p>Carregant activitats...</p>");
+          location.reload();
+        };
+      }
+    });
+  };
+}
 
 </script>

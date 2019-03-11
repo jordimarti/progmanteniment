@@ -16,7 +16,7 @@ class EdificisController < ApplicationController
 
   def create
     @edifici = Edifici.new(edifici_params)
-    if current_user.role = 'cambra'
+    if current_user.role == 'cambra'
       @edifici.creador = 'cambra'
     end
     if @edifici.save

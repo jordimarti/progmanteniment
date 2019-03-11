@@ -167,24 +167,28 @@ class OperacionsController < ApplicationController
   end
 
   def generar_calendari_activitats 
-    any = params[:any]
+    any_solicitat = params[:any].to_i
     @edifici = Edifici.find(params[:edifici_id])
-    operacions = Operacio.where(edifici_id: @edifici.id, data_inici_any: any)
+    operacions = Operacio.where(edifici_id: @edifici.id)
+    any_inici = Time.now.year
+    any_fi = any_inici + 11
     operacions.each do |operacio|
       if operacio.tipus == 'preventiu'
-        any_operacio = any.to_i
+        any = operacio.data_inici_any
         any_fi = Time.now.year + 11
-        while any_operacio < any_fi do
-          referencia = ReferenciaCalendariOperacio.new
-          
-          referencia.edifici_id = @edifici.id
-          referencia.operacio_id = operacio.id
-          referencia.descripcio = operacio.descripcio_ca
-          referencia.sistema = operacio.sistema
-          referencia.data_any = any
-          referencia.data_mes = operacio.data_inici_mes
-          referencia.save
-          any_operacio += operacio.periodicitat
+        while any < any_fi do
+          #Passem per tots els anys, però només es genera la referència si coincideix amb l'any sol·licitat
+          if any == any_solicitat
+            referencia = ReferenciaCalendariOperacio.new
+            referencia.edifici_id = @edifici.id
+            referencia.operacio_id = operacio.id
+            referencia.descripcio = operacio.descripcio_ca
+            referencia.sistema = operacio.sistema
+            referencia.data_any = any
+            referencia.data_mes = operacio.data_inici_mes
+            referencia.save
+          end
+          any += operacio.periodicitat
         end
       else
         data_inici_any = operacio.data_inici_any
@@ -207,8 +211,8 @@ class OperacionsController < ApplicationController
         end
       end
     end
-    @referencies = ReferenciaCalendariOperacio.where(edifici_id: @edifici.id, data_any: any)
-    @any_generat = any
+    @referencies = ReferenciaCalendariOperacio.where(edifici_id: @edifici.id, data_any: any_solicitat)
+    @any_generat = any_solicitat
   end
 
 
