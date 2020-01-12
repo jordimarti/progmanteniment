@@ -24,4 +24,5 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'millora', 'millores'
   inflect.irregular 'actuacio', 'actuacions'
   inflect.irregular 'referencia', 'referencies'
+  inflect.irregular 'factura', 'factures'
 end

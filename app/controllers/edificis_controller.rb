@@ -19,11 +19,21 @@ class EdificisController < ApplicationController
     if current_user.role == 'cambra'
       @edifici.creador = 'cambra'
     end
-    if @edifici.save
-      create_complements(@edifici.id)
-      redirect_to edificis_path
-    else
-      render :new
+    respond_to do |format|
+      if @edifici.save
+        #Aquí creem els objectes complementaris a l'edifici (dades_edifici, checklist...)
+        create_complements(@edifici.id)
+
+        if current_user.role == 'cambra'
+          format.html { redirect_to edificis_path }
+        else
+          format.html { redirect_to validar_dades_path(edifici_id: @edifici.id) }
+          format.json { render :show, status: :created, location: @edifici }
+        end
+      else
+        format.html { render :new }
+        format.json { render json: @edifici.errors, status: :unprocessable_entity }
+      end
     end
   end
 

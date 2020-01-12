@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :empresa_factures
+  resources :usuari_factures
   resources :referencia_calendari_operacions
   resources :referencia_calendari_preventius
   resources :despeses
@@ -28,6 +30,9 @@ Rails.application.routes.draw do
   end
   resources :identificacions
   resources :fases
+  get 'pagaments/crear_pagament', to: 'pagaments#crear_pagament', :as => :crear_pagament
+  get 'pagaments/validar_dades', to: 'pagaments#validar_dades', :as => :validar_dades 
+  get 'pagaments/cambra_projects'
   resources :edificis do
     resource :download, only: [:show]
     resource :download_resum, only: [:show]
@@ -35,7 +40,7 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
-  get 'pagaments/cambra_projects'
+  
   get 'home/index'
   get 'home/contacta'
   get 'home/tutorial'

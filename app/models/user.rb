@@ -20,4 +20,6 @@ class User < ApplicationRecord
 	end
 
   has_many :edificis
+  has_many :pagaments
+  
 end

@@ -22,6 +22,42 @@ es:
               blank: "Es necesario escribir los apellidos"
             reset_password_token:
               invalid: "No coincide con la confirmación"
+        usuari_factura:
+          attributes:
+            nif:
+              invalid: "El formato del NIF debe ser 00000000X, sin espacios ni guiones"
+              blank: "Es necesario escribir el NIF"
+            email:
+              invalid: "Es necesario poner una dirección de correo electrónico válida"
+              blank: "Es necesario poner una dirección de correo electrónico válida"
+            nom:
+              blank: "Es necesario poner el nombre"
+            adreca:
+              blank: "Es necesario poner la dirección"
+            provincia:
+              blank: "Es necesario poner la provincia"
+            poblacio:
+              blank: "Es necesario poner la población"
+            codi_postal:
+              blank: "Es necesario poner el código postal"
+        empresa_factura:
+          attributes:
+            nif:
+              invalid: "El formato del NIF debe ser 00000000X, sin espacios ni guiones"
+              blank: "Es necesario escribir el NIF de empresa"
+            email:
+              invalid: "Es necesario poner una dirección de correo electrónico válida"
+              blank: "Es necesario poner una dirección de correo electrónico válida"
+            nom_juridic:
+              blank: "Es necesario poner el nombre"
+            adreca:
+              blank: "Es necesario poner la dirección"
+            provincia:
+              blank: "Es necesario poner la provincia"
+            poblacio:
+              blank: "Es necesario poner la población"
+            codi_postal:
+              blank: "Es necesario poner el código postal"
   layouts:
     application:
       titol_pagina: "Programa de mantenimiento"
@@ -55,6 +91,7 @@ es:
       titol: "Programas"
       nou_edifici: "Crear un nuevo programa"
       no_projectes: "Aún no has creado ningún programa."
+      no_pagat: "Pendiente de pago"
     new:
       titol: "Crear un nuevo programa"
       tornar_projectes: "Volver al listado de programas"
@@ -466,6 +503,49 @@ es:
       genera_programa: "Programa de mantenimiento"
       genera_registre: "Registro de mantenimiento"
       genera_resum: "Resumen del programa"
+  pagaments:
+    validar_dades:
+      titol: "Pago del Programa de mantenimiento"
+      explicacio: "Para crear un Programa de mantenimiento debes realizar un pago de 66,55€ (55€ + IVA)."
+      preu_no_colegiats: "El precio para no colegiados es 78,65€ (65€ + IVA)."
+      explicacio2: "Selecciona si quieres una factura a tu nombre o a nombre de empresa."
+      explicacio3: "Escribe el NIF sin espacios ni guiones (-)"
+      factura_personal: "Factura personal"
+      factura_empresa: "Factura empresa"
+      imatge_llibre: "Precio Programa de mantenimiento"
+      tornar_projectes: "Volver a Programas de mantenimiento"
+  usuari_factures:
+    show:
+      titol: "Datos de facturación"
+      nom: "Nombre"
+      adreca: "Dirección"
+      provincia: "Provincia"
+      email: "Correo electrónico"
+      nif: "NIF"
+      poblacio: "Población"
+      codi_postal: "Código postal"
+      explicacio: "Si queréis modificar los datos de facturación podéis acceder a la "
+      procedir_pagament: "Proceder al pago"
+    edit:
+      titol: "Datos de facturación"
+    form:
+      guardar: "Guardar"
+  empresa_factures:
+    show:
+      titol: "Datos de facturación"
+      nom_juridic: "Nombre"
+      adreca: "Dirección"
+      provincia: "Provincia"
+      email: "Correo electrónico"
+      nif: "NIF"
+      poblacio: "Población"
+      codi_postal: "Código postal"
+      explicacio: "Si queréis modificar los datos de facturación podéis acceder a la "
+      procedir_pagament: "Proceder al pago"
+    edit:
+      titol: "Datos de facturación"
+    form:
+      guardar: "Guardar"
   simple_form:
     labels:
       edifici:

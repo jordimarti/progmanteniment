@@ -1,43 +1,111 @@
 class PagamentsController < ApplicationController
-	# Posem skip pq vindrà d'un servidor extern i no hi haurà authenticity token
+  # Posem skip pq vindrà d'un servidor extern i no hi haurà authenticity token
   skip_before_filter :verify_authenticity_token
   before_action :set_pagament, only: [:show, :edit, :update, :destroy]
-  before_action :set_edifici, only: [:index, :show, :new, :edit, :create, :destroy, :validar_dades]
+  before_action :set_edifici, only: [:index, :show, :new, :edit, :create, :destroy]
 
+  # GET /pagaments
+  # GET /pagaments.json
   def index
     @pagaments = Pagament.where(pagat: true)
   end
 
+  # GET /pagaments/1
+  # GET /pagaments/1.json
+  def show
+  end
+
+  # GET /pagaments/new
   def new
     @pagament = Pagament.new
   end
 
+  # GET /pagaments/1/edit
   def edit
   end
 
   def validar_dades
+    @edifici = Edifici.find(params[:edifici_id])
     @usuari_factura = UsuariFactura.new
     @empresa_factura = EmpresaFactura.new
     @nif_usuari = current_user.nif
+
   end
+
+  #def crear_pagament_old
+  #  @pagament = Pagament.new()
+  #  @pagament.user_id = current_user.id
+  #  @pagament.edifici_id = params[:edifici_id]
+  #  @pagament.numorder = numorder(params[:edifici_id])
+  #  @pagament.import = "42,96"
+  #  @pagament.pagat = false
+  #  titular = current_user.name
+  #  url_pagament = 'http://isis.apabcn.cat/LibroEdificio/pagoVisa.aspx?titular=' + titular + '&importe=' + @pagament.import + '&numorder=' + @pagament.numorder.to_s + '&descripcion=llibreedifici&urlresponse=http://llibreedifici.apabcn.cat/pagaments/update_pagament'
+  #  #http://isis.apabcn.cat/LibroEdificio/pagoVisa.aspx?titular=Titular&importe=42,96&numorden=110000000101&descripcion=llibreedifici&urlresponse=http://llibreedifici.apabcn.cat/pagaments/update_pagament
+  #  respond_to do |format|
+  #    if @pagament.save
+  #      format.html { redirect_to url_pagament }
+  #      format.json { render :show, status: :created, location: @pagament }
+  #    else
+  #      format.html { render :new }
+  #      format.json { render json: @pagament.errors, status: :unprocessable_entity }
+  #    end
+  #  end
+  #end
 
   def crear_pagament
     @pagament = Pagament.new()
     @pagament.user_id = current_user.id
     @pagament.edifici_id = params[:edifici_id]
     @pagament.numorder = numorder(params[:edifici_id])
-    #@pagament.import = "42.96"
-    @pagament.import = "1"
+    #Comprovem si és col·legiat per decidir preu
+    factura = UsuariFactura.where(edifici_id: params[:edifici_id]).last
+    if factura != nil
+      if factura.colegiat == true
+        @pagament.import = "66.55"
+      else
+        @pagament.import = "78.65"
+      end
+    else
+      @pagament.import = "78.65"
+    end
     @pagament.pagat = false
     titular = current_user.name
-    url_resposta_correcta = "http%3A%2F%2Flocalhost:3000%2Fpagaments%2Fupdate_pagament%3FpagoVisaResult%3Dvalue1%26numorder%3D" + @pagament.numorder
-    url_resposta_error = "http%3A%2F%2Flocalhost:3000%2Fpagaments%2Ferror_pagament"
-    args = {"importe" => @pagament.import, "titular" => URI.escape(titular), "descripcion" => "llibreedifici", "idProducto" => params[:edifici_id], "urlresponse" => url_resposta_correcta, "urlresponseint" => url_resposta_error}
-    
+    #endpoint = 'https://partial-caateebcn-partial.cs82.force.com/bookpurchase/apex/creditcardservice?importe=' + @pagament.import + '&titular=' + URI.escape(titular) + '&descripcion=llibreedifici&idProducto=' + params[:edifici_id] + '&urlresponse=http%3A%2F%2Flocalhost:3000%2Fpagaments%2Fupdate_pagament%3FpagoVisaResult%3Dvalue1%26numorder%3Dvalue2&urlresponseko=http%3A%2F%2Flocalhost:3000%2Fpagaments%2Ferror_factura'
+    #url = URI.parse('https://partial-caateebcn-partial.cs82.force.com/bookpurchase/services/apexrest/creditcard')
+    #url = URI.parse('https://enngarvpspmm.x.pipedream.net')
+    url_resposta_correcta = "http%3A%2F%2Fprogramamanteniment.apabcn.cat%2Fpagaments%2Fupdate_pagament%3FpagoVisaResult%3Dvalue1%26numorder%3D" + @pagament.numorder
+    url_resposta_error = "http%3A%2F%2Fprogramamanteniment.apabcn.cat%2Fpagaments%2Ferror_pagament"
+    args = {"importe" => @pagament.import, "titular" => URI.escape(titular), "descripcion" => "progmanteniment", "idProducto" => params[:edifici_id], "urlresponse" => url_resposta_correcta, "urlresponseint" => url_resposta_error}
+    puts "Pagament import:"
+    puts @pagament.import
     urlstring = 'https://apabcn.secure.force.com/bookpurchase/services/apexrest/creditcard'
-    
+    #urlstring = URI.parse('https://enngarvpspmm.x.pipedream.net')
+    #uri = URI.parse("https://partial-caateebcn-partial.cs82.force.com/bookpurchase/services/apexrest/creditcard")
+
     if @pagament.save
+      #resposta = Net::HTTP.post_form(url, args, initheader = {'Content-Type' =>'application/json'})
+
+      #uri = URI.parse("https://enngarvpspmm.x.pipedream.net")
+      #header = {'Content-Type': 'text/json'}
+      #http = Net::HTTP.new(uri.host, uri.port)
+      #request = Net::HTTP::Post.new(uri.request_uri, header)
+      #request.body = args.to_json
+      #resposta = http.request(request)
+
+      
+      
       resposta = HTTParty.post(urlstring, body: args.to_json, headers: { 'Content-Type' => 'application/json' })
+      #resposta = Net::HTTP.post_form(uri, {"importe" => @pagament.import, "titular" => URI.escape(titular), "descripcion" => "llibreedifici", "idProducto" => params[:edifici_id], "urlresponse" => "http%3A%2F%2Flocalhost:3000%2Fpagaments%2Fupdate_pagament%3FpagoVisaResult%3Dvalue1%26numorder%3Dvalue2", "urlresponseko" => "http%3A%2F%2Flocalhost:3000%2Fpagaments%2Ferror_factura"})
+      puts '-----------------'
+      puts resposta.code
+      puts '-----------------'
+      puts resposta.body
+      puts '-----------------'
+      puts resposta.message
+      puts '-----------------'
+      #puts resposta.headers.inspect
+      puts '-----------------'
       dades = resposta.to_hash
       @pagament.numorden = dades['numorden']
       @pagament.save
@@ -45,8 +113,10 @@ class PagamentsController < ApplicationController
       htmlstring.slice!(0, 9)
       htmlstring = 3.times do htmlstring.chop! end
       render html: dades['pagoVisaResult'].html_safe
+
     end
   end
+
 
   def numorder(edifici_id)
     codi_factura = '058'
@@ -57,6 +127,21 @@ class PagamentsController < ApplicationController
     final = codi_factura + numero_projecte + numero_intent
     return final
   end
+
+  # PATCH/PUT /pagaments/1
+  # PATCH/PUT /pagaments/1.json
+  #def update
+  #  pagament = Pagament.where(:numorder => params[:numorder])
+  #  respond_to do |format|
+  #    if pagament.update(pagament_params)
+  #      format.html { redirect_to @pagament, notice: 'Pagament was successfully updated.' }
+  #      format.json { render :show, status: :ok, location: @pagament }
+  #    else
+  #      format.html { render :edit }
+  #      format.json { render json: @pagament.errors, status: :unprocessable_entity }
+  #    end
+  #  end
+  #end
 
   #Comprovem si el resultat del pagament és entre 0000 i 0099
   def comprovar_resultat(resultat)
@@ -172,9 +257,6 @@ class PagamentsController < ApplicationController
     @empresa_factura = EmpresaFactura.where(edifici_id: @pagament.edifici_id).last
   end
 
-
-
-
   def cambra_projects
     @mesos = [['Gener', '01'], ['Febrer', '02'], ['Març', '03'], ['Abril', '04'], ['Maig', '05'], ['Juny', '06'], ['Juliol', '07'], ['Agost', '08'], ['Setembre', '09'], ['Octubre', '10'], ['Novembre', '11'], ['Desembre', '12']]
     @edificis = []
@@ -191,6 +273,16 @@ class PagamentsController < ApplicationController
     edificis_any = edificis.where('extract(year from created_at) = ?', any)
     edificis_mes = edificis_any.where('extract(month from created_at) = ?', mes)
     return edificis_mes
+  end
+
+  # DELETE /pagaments/1
+  # DELETE /pagaments/1.json
+  def destroy
+    @pagament.destroy
+    respond_to do |format|
+      format.html { redirect_to pagaments_url, notice: 'Pagament was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   private

@@ -11,5 +11,6 @@ class Edifici < ApplicationRecord
 	has_many :despeses
 	has_many :tresoreries
 	has_many :ingressos
+	has_many :pagaments
 
 end
