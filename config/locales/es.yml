@@ -508,6 +508,8 @@ es:
       titol: "Pago del Programa de mantenimiento"
       explicacio: "Para crear un Programa de mantenimiento debes realizar un pago de 66,55€ (55€ + IVA)."
       preu_no_colegiats: "El precio para no colegiados es 78,65€ (65€ + IVA)."
+      preu_ite: "Si sois colegiados y habéis visado la ITE el precio es 33,28€ (27,5€ + IVA). Ahora tenéis que pagar el importe íntegro (66,55€) y posteriormente se os realizará el abono."
+      label_preu_ite: "Número de visado de la ITE"
       explicacio2: "Selecciona si quieres una factura a tu nombre o a nombre de empresa."
       explicacio3: "Escribe el NIF sin espacios ni guiones (-)"
       factura_personal: "Factura personal"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200112093244) do
+ActiveRecord::Schema.define(version: 20200430151322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,8 +79,9 @@ ActiveRecord::Schema.define(version: 20200112093244) do
     t.string   "email"
     t.string   "tipus_client"
     t.string   "nif"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "num_visat_ite"
   end
 
   create_table "fases", force: :cascade do |t|
@@ -193,6 +194,7 @@ ActiveRecord::Schema.define(version: 20200112093244) do
     t.string   "num_factura_sap"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.string   "num_visat_ite"
   end
 
   create_table "planificacions", force: :cascade do |t|
@@ -288,8 +290,9 @@ ActiveRecord::Schema.define(version: 20200112093244) do
     t.string   "num_client"
     t.boolean  "colegiat"
     t.string   "nif"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "num_visat_ite"
   end
 
 end
