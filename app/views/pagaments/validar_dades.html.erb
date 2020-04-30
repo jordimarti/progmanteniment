@@ -60,7 +60,7 @@
 								<div class="form-inputs">
 				          <%= f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id } %>
 				          <%= f.input :edifici_id, :as => :hidden, :input_html => { :value => @edifici.id } %>
-				          
+				          <%= f.input :num_visat_ite, :as => :hidden, :input_html => { :class => 'numero-ite' } %>
 				          <%= f.input :nif, :input_html => { :value => @nif_usuari } %>
 			          </div>
 
